@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  isAuthenticated: boolean = false;
+
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.ObtenerUsuario();
+  }
+
+  ObtenerUsuario(){
+    let result = sessionStorage.getItem('isAuthorized')
+    if(result){
+      this.isAuthenticated = true;
+    }
+
+  }
+
+  Logout(){
+    sessionStorage.clear();
+    this.router.navigate(['/logout']);
   }
 
 }
