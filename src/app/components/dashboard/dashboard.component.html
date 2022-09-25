@@ -15,6 +15,7 @@
 
 <div class="container" *ngIf="isAuthenticated == true">
     <div class="row">
-        
+        <div *ngIf="obtenerRol() === 'true'"><p>Bienvenido Admin</p></div>
+        <div *ngIf="obtenerRol() === 'false'"><p>Bienvenido user normal</p></div>
     </div>
 </div>

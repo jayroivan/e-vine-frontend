@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuarios';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import jwt_decode from 'jwt-decode'
 
 @Component({
   selector: 'app-login',
@@ -43,6 +44,31 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isAdmin(tokens: string){
+    interface decodeToken {
+      usuario: string;
+      id: string;
+      email: string;
+      telefono: number;
+      rol: string;
+      exp: number;
+      iat: number;
+
+    }
+    //let token = sessionStorage.getItem('token')!;
+    var decode = (jwt_decode<decodeToken>(tokens));
+    var rol = decode['rol']
+    console.log(rol)
+    this.usuarioService.getrol(rol, tokens).subscribe((res) =>{
+      if (res.nombre === 'admin') {
+        console.log(res.nombre)
+        sessionStorage.setItem("isAdmin", JSON.stringify(true))
+      } else {
+        sessionStorage.setItem("isAdmin", JSON.stringify(false))
+      }
+    })
+  }
+
   ingresar(){
     this.usuario = {
       email: this.accessForm.value.Email,
@@ -52,8 +78,9 @@ export class LoginComponent implements OnInit {
     this.usuarioService.login(this.usuario).subscribe((res) => {
       //console.log(res.access_token)
       if(res.access_token){
-        sessionStorage.setItem('token', JSON.stringify(res));
+        sessionStorage.setItem('token', JSON.stringify(res.access_token));
         sessionStorage.setItem('isAuthorized', JSON.stringify(true));
+        this.isAdmin(JSON.stringify(res.access_token));
         this.fakeloading();
       }else {
         this.error();

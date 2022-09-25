@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,12 +19,17 @@ export class DashboardComponent implements OnInit {
     this.ObtenerUsuario();
   }
 
+
   ObtenerUsuario(){
     let result = sessionStorage.getItem('isAuthorized')
     if(result){
       this.isAuthenticated = true;
     }
 
+  }
+
+  obtenerRol(){
+    return sessionStorage.getItem('isAdmin')
   }
 
   Logout(){
