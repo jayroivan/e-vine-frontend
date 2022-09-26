@@ -13,9 +13,38 @@
     </mat-menu>
 </mat-toolbar>
 
-<div class="container" *ngIf="isAuthenticated == true">
-    <div class="row">
+    <div class="container" *ngIf="isAuthenticated == true">
+        <div class="row">
         <div *ngIf="obtenerRol() === 'true'"><p>Bienvenido Admin</p></div>
         <div *ngIf="obtenerRol() === 'false'"><p>Bienvenido user normal</p></div>
+        </div>
+    </div>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-3" style="padding-left: 100px;padding-right: 0px;padding-top: 10px;">
+            <mat-label class="mat-card-title">Busqueda de vinos</mat-label>                      
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control pt-2" id="busqueda" placeholder="Nombre de vino">  
+        </div>
+        <div class="col-2">
+            <button mat-button class="btn btn-primary w-50" (click)="buscar()">Buscar</button>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-3">
+            <mat-card>
+                <img mat-card-image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9xaFqtAy1KIuK7n1FXuD5Je9R_2KIdudEXg&usqp=CAU" class="card-img-top" alt="...">
+                <mat-card-content >
+                <p class="mat-card-title">Nombre: </p>
+                <p class="mat-card-title">Descripción: </p>
+                <p class="mat-card-title">Precio: $ </p>
+                <div class="d-grid gap-2 col-5 mx-auto">
+                <button mat-button class="btn btn-primary w-100" (click)="detalle()">Detalle</button> </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>

@@ -37,4 +37,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/logout']);
   }
 
+  buscar() {  }
+
+  detalle(){
+    this.router.navigate(["/detalles"]);
+  }
+
 }
