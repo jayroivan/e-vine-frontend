@@ -23,8 +23,9 @@ export class DashboardComponent implements OnInit {
   producto!: Producto;
   search: FormControl = new FormControl(''); 
 
-  mode: ProgressBarMode = 'determinate';
+  mode: ProgressBarMode = 'indeterminate';
   loading = false;
+  notificacion = false;
 
   constructor(
     private router: Router,
@@ -35,6 +36,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.ObtenerUsuario();
     this.CargarDatos();
+    this.productoService.$notificacion.subscribe((res)=> {
+      if(res){
+        this.notificacion = res;
+      }
+    })
   }
 
   ObtenerUsuario(){
@@ -56,7 +62,7 @@ export class DashboardComponent implements OnInit {
 
   openDialogProducto(producto:Producto): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '300px',
+      width: '400px',
       data: { id: producto._id, nombre: producto.nombre, cosecha: producto.cosecha, precio: producto.precio, stock: producto.stock, categoria: producto.categoria},
     });
 
@@ -74,8 +80,17 @@ export class DashboardComponent implements OnInit {
     return sessionStorage.getItem('isAdmin')
   }
 
-  ChangeAnimation(){
-    this.mode = "indeterminate"
+  ChangeAnimation(boolean: boolean, id?: string){
+    const progress = document.getElementById(`${id}`)
+
+    if(boolean == true && progress?.id == id){
+      progress?.classList.add('mat-progress-hover')
+      this.mode = "indeterminate"
+    } else{
+      progress?.classList.remove('mat-progress-hover')
+      this.mode = "determinate"
+    }
+    
   }
 
   Logout(){
@@ -112,10 +127,12 @@ export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: Producto,
+    private productoService: ProductoService
   ) {}
 
   AddCarrito(producto:Producto){
-
+    this.productoService.$notificacion.emit(true);
+    this.onNoClick()
   }
 
   onNoClick(): void {

@@ -1,3 +1,15 @@
   .example-spacer {
       flex: 1 1 auto;
     }
+
+  mat-card{
+    cursor: pointer;
+  }
+  
+  .mat-progress{
+    visibility: hidden;
+  }
+
+  .mat-progress-hover{
+    visibility: visible;
+  }
