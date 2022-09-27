@@ -5,15 +5,37 @@
     flex-direction: column;
   }
 
-table {
-    width: 100%;
-    text-align: center !important;
+mat-header-cell {
+  padding: 3%;
+  align-items: center !important;
 }
 
-.mat-sort-header-container{
-    justify-content: center;
+mat-cell {
+    padding: 3%;
+    align-items: center !important;
 }
 
-.mat-header-cell {
-    text-align: center !important;
+
+.mat-column-nombre {
+  flex: none;
+  width: 175px;
+}
+
+.mat-column-descripcion {
+  flex: none;
+  width: 300px;
+}
+
+.mat-column-acciones {
+  flex: none;
+  width: 200px;
+}
+
+mat-raised-button{
+  padding-left: 10%;
+}
+
+mat-form-field{
+  width: 100%;
+  display: block;
 }
