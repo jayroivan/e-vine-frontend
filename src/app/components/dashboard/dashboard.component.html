@@ -1,6 +1,8 @@
 <mat-toolbar *ngIf="isAuthenticated == true" color="primary">
     <span>E-Vine</span>
     <span class="example-spacer"></span>
+
+    <button mat-button (click)="openDialog()">Tipos de Vino</button>
     <button mat-icon-button aria-label="Example icon-button with share icon" [routerLink]="">
         <mat-icon>
             shopping_cart
@@ -8,7 +10,7 @@
     </button>
     <button mat-button [matMenuTriggerFor]="menu"><mat-icon>person_pin</mat-icon></button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item><mat-icon>manage_accounts</mat-icon>Ajustes</button>
+        <button mat-menu-item ><mat-icon>manage_accounts</mat-icon>Ajustes</button>
         <button mat-menu-item (click)="Logout()"><mat-icon>logout</mat-icon>Cerrar Sesion</button>
     </mat-menu>
 </mat-toolbar>
@@ -17,5 +19,7 @@
     <div class="row">
         <div *ngIf="obtenerRol() === 'true'"><p>Bienvenido Admin</p></div>
         <div *ngIf="obtenerRol() === 'false'"><p>Bienvenido user normal</p></div>
+
+
     </div>
 </div>

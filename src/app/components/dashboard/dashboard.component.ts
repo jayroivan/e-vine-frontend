@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import jwt_decode from 'jwt-decode';
+import { CategoriaComponent } from '../categoria/categoria.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,15 @@ import jwt_decode from 'jwt-decode';
 })
 export class DashboardComponent implements OnInit {
 
+  name: string | undefined;
+  color: string | undefined;
+
   isAuthenticated: boolean = false;
+  loading = false;
 
   constructor(
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +41,16 @@ export class DashboardComponent implements OnInit {
   Logout(){
     sessionStorage.clear();
     this.router.navigate(['/logout']);
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CategoriaComponent, {
+      width: '600px',
+      data: { name: this.name, color: this.color }
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.color = res;
+    });
   }
 
 }
