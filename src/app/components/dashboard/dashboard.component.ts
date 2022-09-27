@@ -44,6 +44,10 @@ export class DashboardComponent implements OnInit {
     }    
   }
 
+  isAdmin(){
+    return sessionStorage.getItem('isAdmin')
+  }
+
   CargarDatos(){
     this.productoService.get().subscribe((res) => {
       this.productos = res;
@@ -82,7 +86,7 @@ export class DashboardComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CategoriaComponent, {
-      width: '600px',
+      width: '800px',
       data: { name: this.name, color: this.color }
     });
     dialogRef.afterClosed().subscribe(res => {

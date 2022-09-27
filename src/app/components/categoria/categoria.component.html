@@ -3,7 +3,7 @@
     <div class="login mt-5 pb-5">
         <mat-spinner *ngIf="loading" class="spiner text-light " [color]="color" diameter="50"></mat-spinner>                
         <mat-card *ngIf="!loading" class="example-card cajaSession">
-            <mat-card-header>
+            <mat-card-header >
                 <mat-card-title class="text-primary">Tipos de Vino</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>           
@@ -15,8 +15,8 @@
                                       
                                         <!-- Nombre Column -->
                                         <ng-container matColumnDef="nombre" >
-                                          <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-                                          <mat-cell *matCellDef="let row" onclick="console.log('hola')"> {{row.nombre}} </mat-cell>
+                                          <mat-header-cell *matHeaderCellDef mat-sort-header class="w-75"> Nombre </mat-header-cell>
+                                          <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
                                         </ng-container>
                                     
                                         <!-- Descripcion Column -->
@@ -26,31 +26,61 @@
                                         </ng-container>
                                     
                                         <!-- Aciones Column -->
-                                        <ng-container matColumnDef="Aciones">
-                                          <mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
-                                          <mat-cell *matCellDef="let row"> {{row.bank_name}} </mat-cell>
+                                        <ng-container matColumnDef="Acciones">
+                                          <mat-header-cell *matHeaderCellDef mat-sort-header class="w-100"> Acciones </mat-header-cell>
+                                          <mat-cell *matCellDef="let row" text-align:center>
+                                            <button mat-raised-button color="warn" (click)="eliminarCategoria(row)"><mat-icon>delete</mat-icon></button>
+                                            <button mat-button color="accent" (click)="onRowClicked(row)"><mat-icon>update</mat-icon></button>
+                                          </mat-cell>
                                         </ng-container>
                                     
                                         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                                        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)">
+                                        <mat-row *matRowDef="let row; columns: displayedColumns;">
                                         </mat-row>
                                       </mat-table>
                                 </div>
                                                       
                         </mat-tab>
                         <mat-tab label="Agregar Nuevo">
+                        <div class="parent">
                             <form [formGroup]="categoriaForm" (ngSubmit)="registrarCategoria()">
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label class="text-primary">Nombre</mat-label>
                                     <input matInput formControlName="Nombre">
                                 </mat-form-field>
+                                <br>
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label class="text-primary">Descripcion</mat-label>
                                     <input matInput placeholder="El Vino Tinto se produce..." formControlName="Descripcion" required>
                                 </mat-form-field>
-                                <button type="submit" mat-raised-button color="primary">Registrarse</button>
-                            </form>                            
+                                <br>
+                                <button type="submit" mat-raised-button color="primary"><mat-icon>save</mat-icon>Guardar</button>
+                            </form> 
+                        </div>                           
                         </mat-tab>
+
+                        <mat-tab label="Actualizar">
+                            <div class="parent">
+                                <form [formGroup]="AcategoriaForm" (ngSubmit)="actualizarCategoria()">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label class="text-primary">Id</mat-label>
+                                        <input matInput formControlName="_id">
+                                    </mat-form-field>
+                                    <br>
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label class="text-primary">Nombre</mat-label>
+                                        <input matInput formControlName="ANombre">
+                                    </mat-form-field>
+                                    <br>
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label class="text-primary">Descripcion</mat-label>
+                                        <input matInput placeholder="El Vino Tinto se produce..." formControlName="ADescripcion" required>
+                                    </mat-form-field>
+                                    <br>
+                                    <button type="submit" mat-raised-button color="primary"><mat-icon>update</mat-icon>Actualizar</button>
+                                </form> 
+                            </div>                           
+                            </mat-tab>
                     </mat-tab-group>    
                 </mat-card-content>  
         </mat-card>
@@ -58,5 +88,5 @@
     
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon>Cancelar</button>
 </div>
