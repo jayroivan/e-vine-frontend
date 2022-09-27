@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   producto!: Producto;
   search: FormControl = new FormControl(''); 
 
-  mode: ProgressBarMode = 'determinate';
+  mode: ProgressBarMode = 'indeterminate';
   loading = false;
 
   constructor(
@@ -70,8 +70,17 @@ export class DashboardComponent implements OnInit {
     return sessionStorage.getItem('isAdmin')
   }
 
-  ChangeAnimation(){
-    this.mode = "indeterminate"
+  ChangeAnimation(boolean: boolean, id?: string){
+    const progress = document.getElementById(`${id}`)
+
+    if(boolean == true && progress?.id == id){
+      progress?.classList.add('mat-progress-hover')
+      this.mode = "indeterminate"
+    } else{
+      progress?.classList.remove('mat-progress-hover')
+      this.mode = "determinate"
+    }
+    
   }
 
   Logout(){
