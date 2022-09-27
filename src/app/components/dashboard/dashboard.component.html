@@ -2,8 +2,7 @@
     <span>E-Vine</span>
     <span class="example-spacer"></span>
 
-    <button mat-button (click)="openProducto()">Productos</button>
-    <button mat-button (click)="openDialog()">Tipos de Vino</button>
+    <button *ngIf="isAdmin() === 'true'" mat-button (click)="openProducto()">Productos</button>
     <button *ngIf="isAdmin() === 'true'" mat-button (click)="openDialog()">Tipos de Vino</button>
     <button mat-icon-button aria-label="Example icon-button with share icon" [routerLink]="">
         <mat-icon *ngIf="notificacion" matBadge="+1" matBadgeColor="warn">
