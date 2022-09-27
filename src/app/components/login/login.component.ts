@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit {
       iat: number;
 
     }
-    //let token = sessionStorage.getItem('token')!;
     var decode = (jwt_decode<decodeToken>(tokens));
     var rol = decode['rol']
     console.log(rol)
@@ -76,7 +75,6 @@ export class LoginComponent implements OnInit {
     }
 
     this.usuarioService.login(this.usuario).subscribe((res) => {
-      //console.log(res.access_token)
       if(res.access_token){
         sessionStorage.setItem('token', JSON.stringify(res.access_token));
         sessionStorage.setItem('isAuthorized', JSON.stringify(true));

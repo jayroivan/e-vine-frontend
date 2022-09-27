@@ -6,6 +6,7 @@ import { MatProgressBar, ProgressBarMode } from '@angular/material/progress-bar'
 import { Router } from '@angular/router';
 import { Producto } from 'src/app/models/productos';
 import { ProductoService } from 'src/app/services/producto.service';
+import { CategoriaComponent } from '../categoria/categoria.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,12 +15,16 @@ import { ProductoService } from 'src/app/services/producto.service';
 })
 export class DashboardComponent implements OnInit {
 
+  name: string | undefined;
+  color: string | undefined;
+
   isAuthenticated: boolean = false;
   productos: Producto[] = []
   producto!: Producto;
   search: FormControl = new FormControl(''); 
 
   mode: ProgressBarMode = 'determinate';
+  loading = false;
 
   constructor(
     private router: Router,
@@ -45,7 +50,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  openDialog(producto:Producto): void {
+  openDialogProducto(producto:Producto): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '300px',
       data: { id: producto._id, nombre: producto.nombre, cosecha: producto.cosecha, precio: producto.precio, stock: producto.stock, categoria: producto.categoria},
@@ -72,6 +77,23 @@ export class DashboardComponent implements OnInit {
   Logout(){
     sessionStorage.clear();
     this.router.navigate(['/logout']);
+  }
+
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CategoriaComponent, {
+      width: '600px',
+      data: { name: this.name, color: this.color }
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.color = res;
+    });
+  }
+  
+  buscar() {  }
+
+  detalle(){
+    this.router.navigate(["/detalles"]);
   }
 
 }
