@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/logout']);
   }
 
+<<<<<<< HEAD
   openDialog(): void {
     const dialogRef = this.dialog.open(CategoriaComponent, {
       width: '600px',
@@ -51,6 +52,12 @@ export class DashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       this.color = res;
     });
+=======
+  buscar() {  }
+
+  detalle(){
+    this.router.navigate(["/detalles"]);
+>>>>>>> 54c630e4185beaed4041d621db25d86ac9919750
   }
 
 }
