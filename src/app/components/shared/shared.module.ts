@@ -14,8 +14,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 
-
-
 //Angular Material
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
@@ -29,6 +27,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list'
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
@@ -57,6 +56,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatMenuModule,
     MatBadgeModule,
     MatDialogModule,   
+    MatProgressBarModule,
   ],
   exports:[
     CommonModule,
@@ -83,6 +83,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatMenuModule,
     MatBadgeModule,
     MatDialogModule,
+    MatProgressBarModule,
   ]
 })
 export class SharedModule { }

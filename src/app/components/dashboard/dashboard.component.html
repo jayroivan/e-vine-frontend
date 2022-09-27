@@ -13,9 +13,53 @@
     </mat-menu>
 </mat-toolbar>
 
-<div class="container" *ngIf="isAuthenticated == true">
+<!-- <div class="container" *ngIf="isAuthenticated == true">
     <div class="row">
         <div *ngIf="obtenerRol() === 'true'"><p>Bienvenido Admin</p></div>
         <div *ngIf="obtenerRol() === 'false'"><p>Bienvenido user normal</p></div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="row mt-4">
+        <h1>Lista de Vinos</h1>
+        <mat-form-field>
+          <mat-label>Nombre de Vino</mat-label>
+          <input matInput type="text" [formControl]="search" (keydown.enter)="ObtenerVino()" placeholder="Chaparro">
+        </mat-form-field>
+    </div>
+    <!-- <div class="row mt-5">
+        <div class="col-3" style="padding-left: 100px;padding-right: 0px;padding-top: 10px;">
+            <mat-label class="mat-card-title">Busqueda de vinos</mat-label>                      
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control pt-2" id="busqueda" placeholder="Nombre de vino">  
+        </div>
+        <div class="col-2">
+            <button mat-button class="btn btn-primary w-50">Buscar</button>
+        </div>
+    </div> -->
+
+    <div class="row mt-4">
+        <div class="col-3" *ngFor="let p of productos" (mouseover)="ChangeAnimation()">
+            <mat-card class="mb-4">
+                <mat-card-header>
+                    <mat-card-subtitle>{{p.cosecha}}</mat-card-subtitle>
+                    <mat-card-title>{{p.nombre}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image [src]="p.imagen" alt="">
+                <mat-card-content>
+                    <p class="mat-card-subtitle"><b>Stock:</b> ${{p.stock}} </p>
+                    <p class="mat-card-subtitle"><b>Precio:</b> ${{p.precio}} </p>
+                </mat-card-content>
+                <mat-divider inset></mat-divider>
+                <mat-card-actions>
+                  <button mat-button (click)="openDialog(p)"><mat-icon>receipt_long</mat-icon> Ver Producto</button>
+                </mat-card-actions>
+                <mat-card-footer>
+                  <mat-progress-bar [mode]="mode"></mat-progress-bar>
+                </mat-card-footer>
+            </mat-card>
+        </div>
     </div>
 </div>

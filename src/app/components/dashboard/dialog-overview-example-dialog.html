@@ -1,0 +1,22 @@
+<h2 mat-dialog-title><b>Nombre:</b> {{data.nombre}}</h2>
+<h3 mat-dialog-subtitle><b>Categoria:</b> {{data.categoria}}</h3>
+<div mat-dialog-content>
+  <p><b>Cosecha:</b> {{data.cosecha}}</p>
+  <p><b>Sotck:</b> {{data.stock}}</p>
+  <p><b>Precio:</b> $ {{data.precio}}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Seleccione una cantidad</mat-label>
+    <mat-select [(value)]="selected" disableRipple>
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+    </mat-select>
+  </mat-form-field>  
+
+  <p><b>$ {{(selected*data.precio).toFixed(2)}}</b></p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon> Cancelar</button>
+  <button mat-button (click)="AddCarrito(data)"><mat-icon>shopping_cart_checkout</mat-icon> Agregar</button>
+</div>
