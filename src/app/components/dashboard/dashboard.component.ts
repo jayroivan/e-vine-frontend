@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Producto } from 'src/app/models/productos';
 import { ProductoService } from 'src/app/services/producto.service';
 import { CategoriaComponent } from '../categoria/categoria.component';
+import { ProductoComponent } from '../producto/producto.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -99,6 +100,16 @@ export class DashboardComponent implements OnInit {
     const dialogRef = this.dialog.open(CategoriaComponent, {
       width: '600px',
       data: { name: this.name, color: this.color }
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.color = res;
+    });
+  }
+
+  openProducto(){
+    const dialogRef = this.dialog.open(ProductoComponent, {
+      width: '1024px',
+      data: { name: this.name, color: this.color}
     });
     dialogRef.afterClosed().subscribe(res => {
       this.color = res;

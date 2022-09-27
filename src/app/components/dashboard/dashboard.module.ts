@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent, DialogOverviewExampleDialog } from './dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { CategoriaComponent } from '../categoria/categoria.component';
+import { ProductoComponent } from '../producto/producto.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { CategoriaComponent } from '../categoria/categoria.component';
     DashboardComponent,
     DialogOverviewExampleDialog,
     CategoriaComponent,
+    ProductoComponent
   ],
   imports: [
     CommonModule,
