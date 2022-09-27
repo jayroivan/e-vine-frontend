@@ -51,6 +51,10 @@ export class DashboardComponent implements OnInit {
     }    
   }
 
+  isAdmin(){
+    return sessionStorage.getItem('isAdmin')
+  }
+
   CargarDatos(){
     this.productoService.get().subscribe((res) => {
       this.productos = res;
@@ -60,7 +64,7 @@ export class DashboardComponent implements OnInit {
   openDialogProducto(producto:Producto): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '400px',
-      data: { id: producto._id, nombre: producto.nombre, cosecha: producto.cosecha, precio: producto.precio, stock: producto.stock, categoria: producto.categoria},
+      data: { id: producto._id, nombre: producto.nombre, cosecha: producto.cosecha, precio: producto.precio, stock: producto.stock, categoria: producto.categoria, nombrecategoria: producto.nombrecategoria},
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -98,7 +102,7 @@ export class DashboardComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CategoriaComponent, {
-      width: '600px',
+      width: '800px',
       data: { name: this.name, color: this.color }
     });
     dialogRef.afterClosed().subscribe(res => {

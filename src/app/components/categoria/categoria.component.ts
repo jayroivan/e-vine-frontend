@@ -3,10 +3,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ThemePalette } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Categoria } from 'src/app/models/categoria';
-import { ProductoService } from '../../services/productos.service'
+import { ProductoService } from '../../services/categoria.service'
 
 @Component({
   selector: 'app-categoria',
@@ -18,11 +19,12 @@ export class CategoriaComponent implements OnInit {
   color: ThemePalette = 'accent';
   public categoria!: Categoria;
   categoriaForm: FormGroup;
+  AcategoriaForm: FormGroup
   loading = false;
   hide = true;  
   selected = new FormControl(0);
   dataSource!: MatTableDataSource<Categoria>;
-  displayedColumns = ['nombre', 'descripcion' ];
+  displayedColumns = ['nombre', 'descripcion', 'Acciones' ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -42,6 +44,11 @@ export class CategoriaComponent implements OnInit {
       Nombre: ['', Validators.required],
       Descripcion: ['', Validators.required]
     })
+    this.AcategoriaForm = this._builder.group({
+      _id: ['', Validators.required],
+      ANombre: ['', Validators.required],
+      ADescripcion: ['', Validators.required]
+    })
 
    }
 
@@ -53,7 +60,12 @@ export class CategoriaComponent implements OnInit {
   }
 
   onRowClicked(row: any) {
-    console.log('Row clicked: ', row);
+    this.AcategoriaForm.setValue({
+      _id: row._id,
+      ANombre: row.nombre,
+      ADescripcion: row.descripcion
+    })
+    this.selected.setValue(2);
   }
 
   registrarCategoria(){
@@ -74,6 +86,23 @@ export class CategoriaComponent implements OnInit {
     })
   }
 
-  
+  eliminarCategoria(row: Categoria){    
+    this.productoService.delete(row._id!.toString()).subscribe((res) =>
+    console.log(res)
+    )
 
+  }
+
+  actualizarCategoria(){
+    this.categoria = {
+    _id: this.AcategoriaForm.value._id,
+    nombre: this.AcategoriaForm.value.ANombre,
+    descripcion: this.AcategoriaForm.value.ADescripcion,
+    }
+    this.productoService.update(this.categoria).subscribe((res) => 
+    console.log(res)
+    )
+    this.selected.setValue(0)
+  }
 }
+

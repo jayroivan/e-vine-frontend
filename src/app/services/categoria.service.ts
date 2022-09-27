@@ -22,4 +22,15 @@ export class ProductoService{
         const headers = new HttpHeaders().set('Authorization', `Bearer ${tokens.replace(/['"]+/g, '')}`);
         return this.http.get<Categoria[]>(`${this.url}/categoria/todos`, {headers: headers})
     }
+
+    delete(id: string){
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${JSON.parse(sessionStorage.getItem('token')!)}`)
+      return this.http.delete(`${this.url}/categoria/eliminar/`+ `${id}`, {headers: headers})
+    }
+
+    update(categoria: Categoria): Observable<Categoria>{
+
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${JSON.parse(sessionStorage.getItem('token')!)}`)
+      return this.http.put<Categoria>(`${this.url}/categoria/actualizar/`+ `${categoria._id}`, categoria, {headers: headers})
+    }
 }

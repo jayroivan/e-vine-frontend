@@ -8,4 +8,5 @@ export interface Producto {
     stock: number;
     categoria?: Categoria;
     imagen?: string;
+    nombrecategoria: string;
 }

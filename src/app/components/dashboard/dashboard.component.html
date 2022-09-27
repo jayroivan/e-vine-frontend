@@ -4,6 +4,7 @@
 
     <button mat-button (click)="openProducto()">Productos</button>
     <button mat-button (click)="openDialog()">Tipos de Vino</button>
+    <button *ngIf="isAdmin() === 'true'" mat-button (click)="openDialog()">Tipos de Vino</button>
     <button mat-icon-button aria-label="Example icon-button with share icon" [routerLink]="">
         <mat-icon *ngIf="notificacion" matBadge="+1" matBadgeColor="warn">
             shopping_cart
@@ -32,7 +33,7 @@
         <div class="col-3" *ngFor="let p of productos" (mouseover)="ChangeAnimation(true, p._id)" (mouseleave)="ChangeAnimation(false, p._id)">
             <mat-card class="mb-4">
                 <mat-card-header>
-                    <mat-card-subtitle>{{p.categoria}}</mat-card-subtitle>
+                    <mat-card-subtitle>{{p.nombrecategoria}}</mat-card-subtitle>
                     <mat-card-title>{{p.nombre}}</mat-card-title>
                 </mat-card-header>
                 <img mat-card-image [src]="p.imagen" alt="">
