@@ -4,7 +4,10 @@
 
     <button mat-button (click)="openDialog()">Tipos de Vino</button>
     <button mat-icon-button aria-label="Example icon-button with share icon" [routerLink]="">
-        <mat-icon>
+        <mat-icon *ngIf="notificacion" matBadge="+1" matBadgeColor="warn">
+            shopping_cart
+        </mat-icon>
+        <mat-icon *ngIf="!notificacion">
             shopping_cart
         </mat-icon>
     </button>
@@ -28,17 +31,18 @@
         <div class="col-3" *ngFor="let p of productos" (mouseover)="ChangeAnimation(true, p._id)" (mouseleave)="ChangeAnimation(false, p._id)">
             <mat-card class="mb-4">
                 <mat-card-header>
-                    <mat-card-subtitle>{{p.cosecha}}</mat-card-subtitle>
+                    <mat-card-subtitle>{{p.categoria}}</mat-card-subtitle>
                     <mat-card-title>{{p.nombre}}</mat-card-title>
                 </mat-card-header>
                 <img mat-card-image [src]="p.imagen" alt="">
                 <mat-card-content>
-                    <p class="mat-card-subtitle"><b>Stock:</b> {{p.stock}} </p>
-                    <p class="mat-card-subtitle"><b>Precio:</b> ${{p.precio}} </p>
+                    <p><b>Cosecha:</b> {{p.cosecha}}</p>
+                    <p><b>Stock:</b> {{p.stock}} </p>
+                    <p><b>Precio:</b> ${{p.precio}} </p>
                 </mat-card-content>
                 <mat-divider inset></mat-divider>
                 <mat-card-actions>
-                  <button mat-button (click)="openDialogProducto(p)"><mat-icon>receipt_long</mat-icon> Ver Producto</button>
+                  <button mat-button (click)="openDialogProducto(p)" [disabled]="p.stock == 0"><mat-icon>receipt_long</mat-icon> Ver Producto</button>
                 </mat-card-actions>
                 <mat-card-footer>
                   <mat-progress-bar class="mat-progress" id="{{p._id}}" [mode]="mode"></mat-progress-bar>
