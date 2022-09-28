@@ -6,14 +6,15 @@ import { DashboardComponent, DialogOverviewExampleDialog } from './dashboard.com
 import { SharedModule } from '../shared/shared.module';
 import { CategoriaComponent } from '../categoria/categoria.component';
 import { ProductoComponent } from '../producto/producto.component';
-
+import { CarritoComponent } from '../carrito/carrito.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     DialogOverviewExampleDialog,
     CategoriaComponent,
-    ProductoComponent
+    ProductoComponent,
+    CarritoComponent
   ],
   imports: [
     CommonModule,

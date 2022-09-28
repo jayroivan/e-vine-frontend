@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   productos: Producto[] = []
   producto!: Producto;
   search: FormControl = new FormControl(''); 
+  carrito: boolean = false;
 
   mode: ProgressBarMode = 'indeterminate';
   loading = false;
@@ -124,6 +125,14 @@ export class DashboardComponent implements OnInit {
 
   detalle(){
     this.router.navigate(["/detalles"]);
+  }
+
+  Home(){
+    this.carrito = false;
+  }
+
+  Carrito(){
+    this.carrito = true;
   }
 
 }
