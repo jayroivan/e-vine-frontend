@@ -1,46 +1,46 @@
-<div mat-dialog-content>
-  
-    <div class="login mt-5 pb-5">
-        <mat-card *ngIf="!loading" class="example-card cajaSession">
-            <mat-card-header >
-                <mat-card-title class="text-primary">Tipos de Vino</mat-card-title>
+<div mat-dialog-content>    
+    <div class="login">
+        <mat-card-title class="text-primary espacio">Tipos de Vino</mat-card-title>        
+        <mat-card *ngIf="!loading" class="example-card cajaSession">            
+            <mat-card-header >                
                 </mat-card-header>
                 <mat-card-content>           
                     <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                         <mat-tab label="Listado">
-                            
-                                <div>
-                                    <mat-table [dataSource]="dataSource" matSort>
-                                      
-                                        <!-- Nombre Column -->
-                                        <ng-container matColumnDef="nombre" >
-                                          <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
-                                          <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
-                                        </ng-container>
+                            <br>
+                            <div>
+                                <mat-table [dataSource]="dataSource" matSort>
                                     
-                                        <!-- Descripcion Column -->
-                                        <ng-container matColumnDef="descripcion">
-                                          <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
-                                          <mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
-                                        </ng-container>
-                                    
-                                        <!-- Aciones Column -->
-                                        <ng-container matColumnDef="Acciones">
-                                          <mat-header-cell *matHeaderCellDef mat-sort-header class="w-100"> Acciones </mat-header-cell>
-                                          <mat-cell *matCellDef="let row" text-align:center>
-                                            <button mat-raised-button color="warn" (click)="eliminarCategoria(row)"><mat-icon>delete</mat-icon></button>
-                                            <button mat-button color="accent" (click)="onRowClicked(row)"><mat-icon>update</mat-icon></button>
-                                          </mat-cell>
-                                        </ng-container>
-                                    
-                                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                                        <mat-row *matRowDef="let row; columns: displayedColumns;">
-                                        </mat-row>
-                                      </mat-table>
-                                </div>
+                                    <!-- Nombre Column -->
+                                    <ng-container matColumnDef="nombre" >
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+                                    </ng-container>
+                                
+                                    <!-- Descripcion Column -->
+                                    <ng-container matColumnDef="descripcion">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
+                                    </ng-container>
+                                
+                                    <!-- Aciones Column -->
+                                    <ng-container matColumnDef="Acciones">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header class="w-100"> Acciones </mat-header-cell>
+                                        <mat-cell *matCellDef="let row" text-align:center>
+                                        <button mat-raised-button color="warn" (click)="eliminarCategoria(row)"><mat-icon>delete</mat-icon></button>
+                                        <button mat-button color="accent" (click)="onRowClicked(row)"><mat-icon>update</mat-icon></button>
+                                        </mat-cell>
+                                    </ng-container>
+                                
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                                    </mat-row>
+                                    </mat-table>
+                            </div>
                                                       
                         </mat-tab>
                         <mat-tab label="Agregar Nuevo">
+                        <br>
                         <div class="parent">
                             <form [formGroup]="categoriaForm" (ngSubmit)="registrarCategoria()">
                                 <mat-form-field class="example-full-width" appearance="fill">

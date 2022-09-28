@@ -13,3 +13,12 @@
   .mat-progress-hover{
     visibility: visible;
   }
+
+  .espacio{
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+
+  .demo-table {
+    width: 100%;
+}

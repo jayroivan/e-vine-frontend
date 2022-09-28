@@ -1,0 +1,59 @@
+.espacioproducto{
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.mat-tab-group {
+  margin-bottom: 48px;
+}
+
+.demo-table {
+    width: 100%;
+}
+.mat-column-demo-nombre {
+  padding-left: 16px;
+  font-size: 20px;
+  text-align: center;
+  width: 100px;
+}
+.mat-column-demo-stock {
+  padding-left: 16px;
+  font-size: 20px;
+  text-align: center;
+  width: 100px;
+}
+.mat-column-demo-precio {
+  padding-left: 16px;
+  font-size: 20px;
+  text-align: center;
+  width: 100px;
+}
+.mat-column-demo-acciones {
+  padding-left: 16px;
+  font-size: 20px;
+  text-align: center;
+  border-left: 1px solid  #e0e0e0;
+  width: 170px;
+}
+
+.example-form {
+  min-width: 400px;
+  max-width: 400px;
+  width: 100%;
+}
+.example-full-width {
+  min-width: 200px;
+  max-width: 200px;
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+.botones {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  margin-right: 8px;
+}

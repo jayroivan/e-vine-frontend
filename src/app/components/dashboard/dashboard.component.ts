@@ -112,7 +112,7 @@ export class DashboardComponent implements OnInit {
 
   openProducto(){
     const dialogRef = this.dialog.open(ProductoComponent, {
-      width: '1024px',
+      width: '800px',
       data: { name: this.name, color: this.color}
     });
     dialogRef.afterClosed().subscribe(res => {

@@ -1,1 +1,77 @@
-<p>producto works!</p>
+<div mat-dialog-content>
+    <mat-card-title class="text-primary espacioproducto">Productos</mat-card-title>
+    <br>
+    <mat-card>
+        <mat-tab-group mat-align-tabs="start">
+            <!-- Listado de Producto-->
+            <mat-tab label="Listado">
+                <br>
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+            
+                    <!-- Nombre Column -->
+                    <ng-container matColumnDef="demo-nombre">
+                        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                    </ng-container>
+            
+                    <!-- Stock Column -->
+                    <ng-container matColumnDef="demo-stock">
+                    <th mat-header-cell *matHeaderCellDef>Stock</th>
+                    <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+                    </ng-container>
+            
+                    <!-- Precio Column -->
+                    <ng-container matColumnDef="demo-precio">
+                    <th mat-header-cell *matHeaderCellDef>Precio</th>
+                    <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="demo-acciones">
+                        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                        <td mat-cell *matCellDef="let element"> {{element.acciones}} </td>
+                        <button mat-raised-button color="warn" (click)="eliminarproducto"><mat-icon>delete</mat-icon></button>
+                        <button mat-button color="accent" (click)="actualizarproducto"><mat-icon>update</mat-icon></button>
+                    </ng-container>
+            
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </mat-tab>
+            <!-- Agregar Producto-->            
+            <mat-tab label="Agregar Producto">     
+                <br>
+                <mat-form-field style="margin-right: 17px;" appearance="fill">
+                    <mat-label>Categoría</mat-label>
+                    <input matInput>  
+                </mat-form-field>              
+                <mat-form-field style="margin-right: 17px;" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput>
+                </mat-form-field>                    
+                <button mat-stroked-button color="primary" aria-label="Show an example snack-bar" style="left: 35px;bottom: 5px;">Agregar Foto</button>  
+                
+                <table class="example-full-width" cellspacing="0"><tr>
+                    <td><mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Fecha</mat-label>
+                        <input matInput>
+                    </mat-form-field></td>
+                    <td><mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Stock</mat-label>
+                      <input matInput>
+                    </mat-form-field></td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Precio</mat-label>
+                      <input matInput>
+                    </mat-form-field>
+                </tr></table>                    
+                <br>
+                <div>              
+                    <button type="submit"  style="margin-left: 300px;" mat-stroked-button color="primary"><mat-icon> save</mat-icon>Guardar</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>  
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon>Cancelar</button>
+  </div>
