@@ -64,7 +64,7 @@ export class DashboardComponent implements OnInit {
   openDialogProducto(producto:Producto): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '400px',
-      data: { id: producto._id, nombre: producto.nombre, cosecha: producto.cosecha, precio: producto.precio, stock: producto.stock, categoria: producto.categoria, nombrecategoria: producto.nombrecategoria},
+      data: { id: producto._id, nombre: producto.nombre, cosecha: producto.cosecha, precio: producto.precio, stock: producto.stock, categoria: producto.categoria, nombrecategoria: producto.categoria?.nombre},
     });
 
     dialogRef.afterClosed().subscribe(result => {
