@@ -17,6 +17,7 @@ export class ProductoService {
 
   $notificacion = new EventEmitter<boolean>();
   $refreshProductos = new EventEmitter<boolean>();
+  $cerrarModal = new EventEmitter<boolean>();
 
   get(): Observable<Producto[]>{
     const httpHeaders = this.getHeaders();
@@ -40,7 +41,7 @@ export class ProductoService {
 
   delete(id: string): Observable<Producto>{
     const httpHeaders = this.getHeaders();
-    return this.http.delete<Producto>(`${this.url}/producto/eliminar/${id}`);
+    return this.http.delete<Producto>(`${this.url}/producto/eliminar/${id}`, {headers: httpHeaders});
   }
 
   getHeaders(): HttpHeaders {

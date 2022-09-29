@@ -18,11 +18,12 @@ export class ProductoComponent implements OnInit {
   displayedColumns: string[] = ['demo-nombre', 'demo-stock', 'demo-precio', 'demo-acciones'];
   dataSource = ELEMENT_DATA;
   productoFomr: FormGroup;
-  updproductoForm: FormGroup;
   categorias: Categoria[] = [];
   producto!: Producto;
+  udtproducto!: Producto;
   imagen:any;
   selected = new FormControl(0);
+  modalSwitch: boolean = false;
 
   constructor(
     private _builder: FormBuilder,
@@ -41,20 +42,11 @@ export class ProductoComponent implements OnInit {
       Categoria: ['', Validators.required],
       Imagen: ['']
     });
-    this.updproductoForm = this._builder.group({
-      Nombre: ['', Validators.required],
-      Cosecha: ['', Validators.required],
-      Stock: ['', Validators.required],
-      Precio: ['', Validators.required],
-      Categoria: ['', Validators.required],
-      Imagen: ['']
-    });
   }
 
   openDialog(producto: Producto) {
-    this.dialog.open(ModificarComponent, {
-      data: {producto: producto},
-    });
+    this.modalSwitch = true;
+    this.udtproducto = producto;
   }
 
   onNoClick(): void {
@@ -64,6 +56,12 @@ export class ProductoComponent implements OnInit {
   ngOnInit(): void {
     this.imagen = undefined;
     this.CargarDatos();
+    this.productoService.$cerrarModal.subscribe((res) => {
+      if(res == true){
+        this.modalSwitch = false;
+        this.ngOnInit();
+      }
+    })
   }
 
   CargarDatos(){
@@ -111,9 +109,14 @@ export class ProductoComponent implements OnInit {
     })
   }
 
-  eliminarproducto() {  }
-
-  actualizarproducto() {  }
+  eliminarproducto(id: string) { 
+    this.productoService.delete(id).subscribe((res) => {
+      if(res != null){
+        this.productoService.$refreshProductos.emit(true);
+        this.ngOnInit();
+      }
+    })
+   }
 
 }
 
