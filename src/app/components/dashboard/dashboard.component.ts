@@ -42,6 +42,11 @@ export class DashboardComponent implements OnInit {
       if(res){
         this.notificacion = res;
       }
+    });
+    this.productoService.$refreshProductos.subscribe((res)=> {
+      if(res){
+        this.ngOnInit();
+      }
     })
   }
 

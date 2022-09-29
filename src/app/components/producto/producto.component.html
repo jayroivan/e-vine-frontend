@@ -2,7 +2,7 @@
     <mat-card-title class="text-primary espacioproducto">Productos</mat-card-title>
     <br>
     <mat-card>
-        <mat-tab-group mat-align-tabs="start">
+        <mat-tab-group [selectedIndex]="selected.value" mat-align-tabs="start" (selectedIndexChange)="selected.setValue($event)">
             <!-- Listado de Producto-->
             <mat-tab label="Listado">
                 <br>
@@ -37,42 +37,50 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
             </mat-tab>
-            <!-- Agregar Producto-->            
-            <mat-tab label="Agregar Producto">     
-                <br>
-                <mat-form-field appearance="fill">
-                    <mat-label>Categoría</mat-label>
-                    <mat-select>
-                      <mat-option *ngFor="let category of categorias" [value]="category._id">
-                        {{category.nombre}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>          
-                <mat-form-field style="margin-right: 17px;" appearance="fill">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput autocomplete="off">
-                </mat-form-field>       
-                <mat-form-field appearance="fill">
-                    <mat-label>Subir o Cambiar Foto de Perfil</mat-label>
-                    <ngx-mat-file-input [accept]="'.jpg, png, jpeg'"></ngx-mat-file-input>
-                    <mat-icon matSuffix>folder</mat-icon>
-                </mat-form-field>
-                
-                <table class="example-full-width" cellspacing="0"><tr>
-                    <td><mat-form-field class="example-full-width" appearance="fill">
-                      <mat-label>Stock</mat-label>
-                      <input matInput type="number" autocomplete="off">
-                    </mat-form-field></td>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                      <mat-label>Precio</mat-label>
-                      <input type="number" matInput autocomplete="off">
-                    </mat-form-field>
-                </tr></table>                    
-                <br>
-                <div>              
-                    <button type="submit"  style="margin-left: 300px;" mat-stroked-button color="primary"><mat-icon> save</mat-icon>Guardar</button>
-                </div>
+            <!-- Agregar Producto-->                        
+                <mat-tab label="Agregar Producto">     
+                    <form [formGroup]="productoFomr" (ngSubmit)="GuardarProducto()">
+                        <br>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Categoría</mat-label>
+                            <mat-select formControlName="Categoria">
+                            <mat-option *ngFor="let category of categorias" [value]="category._id">
+                                {{category.nombre}}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>          
+                        <mat-form-field style="margin-right: 17px;" appearance="fill">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="Nombre" autocomplete="off">
+                        </mat-form-field>                          
+                        <mat-form-field appearance="fill">
+                            <mat-label>Subir o Cambiar Foto de Perfil</mat-label>
+                            <ngx-mat-file-input formControlName="Imagen" [accept]="'.jpg, png, jpeg'" (change)="obtenerImagen($event)"></ngx-mat-file-input>
+                            <mat-icon matSuffix>folder</mat-icon>
+                        </mat-form-field>                    
+                        <table class="example-full-width" cellspacing="0"><tr>
+                            <td><mat-form-field style="margin-right: 17px;" appearance="fill">
+                                <mat-label>Cosecha</mat-label>
+                                <input matInput formControlName="Cosecha" autocomplete="off">
+                            </mat-form-field>                            
+                            </td>
+                            <td><mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Stock</mat-label>
+                            <input matInput type="number" formControlName="Stock" autocomplete="off">
+                            </mat-form-field></td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Precio</mat-label>
+                            <input type="number" matInput formControlName="Precio" autocomplete="off">
+                            </mat-form-field>
+                        </tr></table>                    
+                        <br>
+                    <div>              
+                        <button style="margin-left: 300px;" mat-stroked-button color="primary" [disabled]="productoFomr.invalid"><mat-icon> save</mat-icon>Guardar</button>
+                    </div>
+                </form>
             </mat-tab>
+            
+            
         </mat-tab-group>
     </mat-card>  
 </div>

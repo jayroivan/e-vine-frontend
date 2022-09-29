@@ -16,6 +16,7 @@ export class ProductoService {
   ) { }
 
   $notificacion = new EventEmitter<boolean>();
+  $refreshProductos = new EventEmitter<boolean>();
 
   get(): Observable<Producto[]>{
     const httpHeaders = this.getHeaders();
