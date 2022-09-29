@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Categoria } from 'src/app/models/categoria';
+import { Producto } from 'src/app/models/productos';
 import { CategoriaService } from 'src/app/services/categoria.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { ProductoService } from 'src/app/services/producto.service';
 
 @Component({
@@ -17,19 +19,33 @@ export class ProductoComponent implements OnInit {
   productoFomr: FormGroup;
   updproductoForm: FormGroup;
   categorias: Categoria[] = [];
+  producto!: Producto;
+  imagen:any;
+  selected = new FormControl(0);
 
   constructor(
     private _builder: FormBuilder,
     public dialogRef: MatDialogRef<ProductoComponent>,
     private productoService: ProductoService,
     private categoriaService: CategoriaService,
+    private firebaseService: FirebaseService
   ) 
   {   
     this.productoFomr = this._builder.group({
-
+      Nombre: ['', Validators.required],
+      Cosecha: ['', Validators.required],
+      Stock: ['', Validators.required],
+      Precio: ['', Validators.required],
+      Categoria: ['', Validators.required],
+      Imagen: ['']
     });
     this.updproductoForm = this._builder.group({
-
+      Nombre: ['', Validators.required],
+      Cosecha: ['', Validators.required],
+      Stock: ['', Validators.required],
+      Precio: ['', Validators.required],
+      Categoria: ['', Validators.required],
+      Imagen: ['']
     });
   }
 
@@ -39,6 +55,7 @@ export class ProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.imagen = undefined;
     this.CargarDatos();
   }
 
@@ -51,12 +68,45 @@ export class ProductoComponent implements OnInit {
     })
   }
 
+  obtenerImagen(event: any){
+    let imagen = event.target.files;
+    let reader = new FileReader();
+
+    reader.readAsDataURL(imagen[0]);
+    reader.onloadend = () => {
+      this.imagen = reader.result;
+    }
+  }
+
+  GuardarProducto(){
+    this.producto = {
+      nombre: this.productoFomr.value.Nombre,
+      cosecha: this.productoFomr.value.Cosecha,
+      precio: this.productoFomr.value.Precio,
+      stock: this.productoFomr.value.Stock,
+      categoria: this.productoFomr.value.Categoria,
+    }
+    this.firebaseService.subirImagen(`${this.producto.nombre}_${Date.now()}`, this.imagen).then((res) => {
+      if(res != null){
+        this.producto.imagen = res;
+        this.productoService.post(this.producto).subscribe((res) => {
+          this.selected.setValue(0);
+          this.ngOnInit();
+          this.productoService.$refreshProductos.emit(true);          
+          this.productoFomr.reset();
+        });
+      }
+    },
+    error => {
+      console.log(error);
+    })
+  }
+
   eliminarproducto() {  }
 
   actualizarproducto() {  }
 
 }
-
 
 export interface ElementosProductos {
   nombre: string;

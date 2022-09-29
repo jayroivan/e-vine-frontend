@@ -100,7 +100,6 @@ export class LoginComponent implements OnInit {
     }
 
     this.usuarioService.post(this.usuario).subscribe((res)=> {
-      console.log(res);
       if(res != null){
         this.selected.setValue(0);
       }else {
