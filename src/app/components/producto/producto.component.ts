@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Categoria } from 'src/app/models/categoria';
 import { Producto } from 'src/app/models/productos';
@@ -29,11 +29,8 @@ export class ProductoComponent implements OnInit {
     public dialogRef: MatDialogRef<ProductoComponent>,
     private productoService: ProductoService,
     private categoriaService: CategoriaService,
-<<<<<<< HEAD
     public dialog: MatDialog,
-=======
     private firebaseService: FirebaseService
->>>>>>> 07df2988567806b1d835298844edb6cbb380f1f8
   ) 
   {   
     this.productoFomr = this._builder.group({
