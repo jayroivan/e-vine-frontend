@@ -40,28 +40,32 @@
             <!-- Agregar Producto-->            
             <mat-tab label="Agregar Producto">     
                 <br>
-                <mat-form-field style="margin-right: 17px;" appearance="fill">
+                <mat-form-field appearance="fill">
                     <mat-label>Categoría</mat-label>
-                    <input matInput>  
-                </mat-form-field>              
+                    <mat-select>
+                      <mat-option *ngFor="let category of categorias" [value]="category._id">
+                        {{category.nombre}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>          
                 <mat-form-field style="margin-right: 17px;" appearance="fill">
                     <mat-label>Nombre</mat-label>
-                    <input matInput>
-                </mat-form-field>                    
-                <button mat-stroked-button color="primary" aria-label="Show an example snack-bar" style="left: 35px;bottom: 5px;">Agregar Foto</button>  
+                    <input matInput autocomplete="off">
+                </mat-form-field>       
+                <mat-form-field appearance="fill">
+                    <mat-label>Subir o Cambiar Foto de Perfil</mat-label>
+                    <ngx-mat-file-input [accept]="'.jpg, png, jpeg'"></ngx-mat-file-input>
+                    <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
                 
                 <table class="example-full-width" cellspacing="0"><tr>
                     <td><mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Fecha</mat-label>
-                        <input matInput>
-                    </mat-form-field></td>
-                    <td><mat-form-field class="example-full-width" appearance="fill">
                       <mat-label>Stock</mat-label>
-                      <input matInput>
+                      <input matInput type="number" autocomplete="off">
                     </mat-form-field></td>
                     <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label>Precio</mat-label>
-                      <input matInput>
+                      <input type="number" matInput autocomplete="off">
                     </mat-form-field>
                 </tr></table>                    
                 <br>

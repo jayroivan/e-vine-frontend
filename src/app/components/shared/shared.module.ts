@@ -13,6 +13,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 //Angular Material
 import {MatMenuModule} from '@angular/material/menu';
@@ -57,6 +58,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatBadgeModule,
     MatDialogModule,   
     MatProgressBarModule,
+    MaterialFileInputModule,
   ],
   exports:[
     CommonModule,
@@ -84,6 +86,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatBadgeModule,
     MatDialogModule,
     MatProgressBarModule,
+    MaterialFileInputModule,
   ]
 })
 export class SharedModule { }

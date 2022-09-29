@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Categoria } from 'src/app/models/categoria';
-import { ProductoService } from '../../services/categoria.service'
+import { CategoriaService } from '../../services/categoria.service'
 
 @Component({
   selector: 'app-categoria',
@@ -32,10 +32,10 @@ export class CategoriaComponent implements OnInit {
   constructor( 
     private _builder: FormBuilder,
     public dialogRef: MatDialogRef<CategoriaComponent>,
-    private productoService: ProductoService
+    private categoriaService: CategoriaService
      )
    {
-    this.productoService.allcategorias(sessionStorage.getItem('token')!).subscribe((categorias) => {
+    this.categoriaService.allcategorias(sessionStorage.getItem('token')!).subscribe((categorias) => {
       this.dataSource = new MatTableDataSource(categorias);
       console.log(categorias)
     });
@@ -74,7 +74,7 @@ export class CategoriaComponent implements OnInit {
       descripcion: this.categoriaForm.value.Descripcion
     }
 
-    this.productoService.postcategoria(this.categoria, sessionStorage.getItem('token')!).subscribe((res)=> {
+    this.categoriaService.postcategoria(this.categoria, sessionStorage.getItem('token')!).subscribe((res)=> {
       console.log(res);
       if(res != null){
         this.selected.setValue(0);
@@ -87,7 +87,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   eliminarCategoria(row: Categoria){    
-    this.productoService.delete(row._id!.toString()).subscribe((res) =>
+    this.categoriaService.delete(row._id!.toString()).subscribe((res) =>
     console.log(res)
     )
 
@@ -99,7 +99,7 @@ export class CategoriaComponent implements OnInit {
     nombre: this.AcategoriaForm.value.ANombre,
     descripcion: this.AcategoriaForm.value.ADescripcion,
     }
-    this.productoService.update(this.categoria).subscribe((res) => 
+    this.categoriaService.update(this.categoria).subscribe((res) => 
     console.log(res)
     )
     this.selected.setValue(0)

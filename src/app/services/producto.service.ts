@@ -19,7 +19,27 @@ export class ProductoService {
 
   get(): Observable<Producto[]>{
     const httpHeaders = this.getHeaders();
-    return this.http.get<Producto[]>(`${this.url}/producto/todos`, {headers: httpHeaders})
+    return this.http.get<Producto[]>(`${this.url}/producto/todos`, {headers: httpHeaders});
+  }
+
+  getById(id: string): Observable<Producto>{
+    const httpHeaders = this.getHeaders();
+    return this.http.get<Producto>(`${this.url}/producto/obtenerUno/${id}`)
+  }
+
+  post(producto: Producto): Observable<Producto>{
+    const httpHeaders = this.getHeaders();
+    return this.http.post<Producto>(`${this.url}/producto/crear`, producto, {headers: httpHeaders});
+  }
+
+  put(id:string, producto: Producto): Observable<Producto>{
+    const httpHeaders = this.getHeaders();
+    return this.http.put<Producto>(`${this.url}/producto/actualizar/${id}`, producto, {headers: httpHeaders});
+  }
+
+  delete(id: string): Observable<Producto>{
+    const httpHeaders = this.getHeaders();
+    return this.http.delete<Producto>(`${this.url}/producto/eliminar/${id}`);
   }
 
   getHeaders(): HttpHeaders {

@@ -7,7 +7,7 @@ import { Categoria } from "../models/categoria";
 @Injectable({
     providedIn: 'root'
   })
-export class ProductoService{
+export class CategoriaService {
     private url = environment.apiURL;
     
     constructor(private http: HttpClient) 
