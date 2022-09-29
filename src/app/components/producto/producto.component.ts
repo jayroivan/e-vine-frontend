@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Categoria } from 'src/app/models/categoria';
 import { Producto } from 'src/app/models/productos';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { ProductoService } from 'src/app/services/producto.service';
+import { ModificarComponent } from './modificar/modificar.component';
 
 @Component({
   selector: 'app-producto',
@@ -28,6 +29,7 @@ export class ProductoComponent implements OnInit {
     public dialogRef: MatDialogRef<ProductoComponent>,
     private productoService: ProductoService,
     private categoriaService: CategoriaService,
+    public dialog: MatDialog,
     private firebaseService: FirebaseService
   ) 
   {   
@@ -49,6 +51,11 @@ export class ProductoComponent implements OnInit {
     });
   }
 
+  openDialog(producto: Producto) {
+    this.dialog.open(ModificarComponent, {
+      data: {producto: producto},
+    });
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -66,6 +73,8 @@ export class ProductoComponent implements OnInit {
     this.categoriaService.allcategorias(sessionStorage.getItem('token')!).subscribe((res) => {
       this.categorias = res;
     })
+
+  
   }
 
   obtenerImagen(event: any){
