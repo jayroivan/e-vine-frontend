@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   productos: Producto[] = []
   producto!: Producto;
   search: FormControl = new FormControl(''); 
+  carrito: boolean = false;
 
   mode: ProgressBarMode = 'indeterminate';
   loading = false;
@@ -64,7 +65,7 @@ export class DashboardComponent implements OnInit {
   openDialogProducto(producto:Producto): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '400px',
-      data: { id: producto._id, nombre: producto.nombre, cosecha: producto.cosecha, precio: producto.precio, stock: producto.stock, categoria: producto.categoria, nombrecategoria: producto.nombrecategoria},
+      data: { id: producto._id, nombre: producto.nombre, cosecha: producto.cosecha, precio: producto.precio, stock: producto.stock, categoria: producto.categoria, nombrecategoria: producto.categoria?.nombre},
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -124,6 +125,14 @@ export class DashboardComponent implements OnInit {
 
   detalle(){
     this.router.navigate(["/detalles"]);
+  }
+
+  Home(){
+    this.carrito = false;
+  }
+
+  Carrito(){
+    this.carrito = true;
   }
 
 }

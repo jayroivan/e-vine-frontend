@@ -1,10 +1,11 @@
 <mat-toolbar *ngIf="isAuthenticated == true" color="primary">
     <span>E-Vine</span>
     <span class="example-spacer"></span>
-
-    <button *ngIf="isAdmin() === 'true'" mat-button (click)="openProducto()">Productos</button>
-    <button *ngIf="isAdmin() === 'true'" mat-button (click)="openDialog()">Tipos de Vino</button>
-    <button mat-icon-button aria-label="Example icon-button with share icon" [routerLink]="">
+    <button mat-icon-button matTooltip="Home" (click)="Home()"><mat-icon>home</mat-icon></button>
+    <button *ngIf="isAdmin() === 'true'" mat-icon-button matTooltip="Productos" (click)="openProducto()"><mat-icon>inventory_2</mat-icon></button>
+    <button *ngIf="isAdmin() === 'true'" mat-icon-button matTooltip="Tipo de Vino" (click)="openDialog()"><mat-icon>category</mat-icon></button>    
+    <span class="example-spacer"></span>
+    <button mat-icon-button matTooltip="Carrito" (click)="Carrito()">
         <mat-icon *ngIf="notificacion" matBadge="+1" matBadgeColor="warn">
             shopping_cart
         </mat-icon>
@@ -12,14 +13,14 @@
             shopping_cart
         </mat-icon>
     </button>
-    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>person_pin</mat-icon></button>
+    <button mat-button matTooltip="Cuenta" [matMenuTriggerFor]="menu"><mat-icon>person_pin</mat-icon></button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item ><mat-icon>manage_accounts</mat-icon>Ajustes</button>
         <button mat-menu-item (click)="Logout()"><mat-icon>logout</mat-icon>Cerrar Sesion</button>
     </mat-menu>
 </mat-toolbar>
 
-<div class="container" *ngIf="isAuthenticated">
+<div class="container" *ngIf="isAuthenticated && carrito == false">
     <div class="row mt-4">
         <h1>Lista de Vinos</h1>
         <mat-form-field>
@@ -32,7 +33,7 @@
         <div class="col-3" *ngFor="let p of productos" (mouseover)="ChangeAnimation(true, p._id)" (mouseleave)="ChangeAnimation(false, p._id)">
             <mat-card class="mb-4">
                 <mat-card-header>
-                    <mat-card-subtitle>{{p.nombrecategoria}}</mat-card-subtitle>
+                    <mat-card-subtitle>{{p.categoria?.nombre}}</mat-card-subtitle>
                     <mat-card-title>{{p.nombre}}</mat-card-title>
                 </mat-card-header>
                 <img mat-card-image [src]="p.imagen" alt="">
@@ -52,3 +53,5 @@
         </div>
     </div>
 </div>
+
+<app-carrito *ngIf="isAuthenticated && carrito == true"></app-carrito>
