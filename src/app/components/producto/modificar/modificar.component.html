@@ -2,7 +2,7 @@
 <div mat-dialog-content>     
     <br>
     <mat-form-field appearance="fill">
-        <mat-label>Categoría</mat-label>
+        <mat-label>Categoría </mat-label>
         <mat-select>
           <mat-option *ngFor="let category of categorias" [value]="category._id">
             {{category.nombre}}
@@ -10,7 +10,7 @@
         </mat-select>
       </mat-form-field>          
     <mat-form-field style="margin-right: 17px;" appearance="fill">
-        <mat-label>Nombre</mat-label>
+        <mat-label>Nombre </mat-label>
         <input matInput autocomplete="off">
     </mat-form-field>       
     <mat-form-field appearance="fill">
