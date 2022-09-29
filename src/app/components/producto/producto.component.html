@@ -1,89 +1,92 @@
-<div mat-dialog-content>
-    <mat-card-title class="text-primary espacioproducto">Productos</mat-card-title>
-    <br>
-    <mat-card>
-        <mat-tab-group [selectedIndex]="selected.value" mat-align-tabs="start" (selectedIndexChange)="selected.setValue($event)">
-            <!-- Listado de Producto-->
-            <mat-tab label="Listado">
-                <br>
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-            
-                    <!-- Nombre Column -->
-                    <ng-container matColumnDef="demo-nombre">
-                        <th mat-header-cell *matHeaderCellDef>Nombre</th>
-                        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-                    </ng-container>
-            
-                    <!-- Stock Column -->
-                    <ng-container matColumnDef="demo-stock">
-                    <th mat-header-cell *matHeaderCellDef>Stock</th>
-                    <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
-                    </ng-container>
-            
-                    <!-- Precio Column -->
-                    <ng-container matColumnDef="demo-precio">
-                    <th mat-header-cell *matHeaderCellDef>Precio</th>
-                    <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
-                    </ng-container>
-            
-                    <ng-container matColumnDef="demo-acciones">
-                        <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                        <td mat-cell *matCellDef="let element"> {{element.acciones}} 
-                        <button mat-raised-button color="warn" (click)="eliminarproducto"><mat-icon>delete</mat-icon></button>
-                        <button mat-button color="accent" (click)="openDialog(element)"><mat-icon>update</mat-icon></button></td>
-                    </ng-container>
-            
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-            </mat-tab>
-            <!-- Agregar Producto-->                        
-                <mat-tab label="Agregar Producto">     
-                    <form [formGroup]="productoFomr" (ngSubmit)="GuardarProducto()">
-                        <br>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Categoría</mat-label>
-                            <mat-select formControlName="Categoria">
-                            <mat-option *ngFor="let category of categorias" [value]="category._id">
-                                {{category.nombre}}
-                            </mat-option>
-                            </mat-select>
-                        </mat-form-field>          
-                        <mat-form-field style="margin-right: 17px;" appearance="fill">
-                            <mat-label>Nombre</mat-label>
-                            <input matInput formControlName="Nombre" autocomplete="off">
-                        </mat-form-field>                          
-                        <mat-form-field appearance="fill">
-                            <mat-label>Subir o Cambiar Foto de Perfil</mat-label>
-                            <ngx-mat-file-input formControlName="Imagen" [accept]="'.jpg, png, jpeg'" (change)="obtenerImagen($event)"></ngx-mat-file-input>
-                            <mat-icon matSuffix>folder</mat-icon>
-                        </mat-form-field>                    
-                        <table class="example-full-width" cellspacing="0"><tr>
-                            <td><mat-form-field style="margin-right: 17px;" appearance="fill">
-                                <mat-label>Cosecha</mat-label>
-                                <input matInput formControlName="Cosecha" autocomplete="off">
-                            </mat-form-field>                            
-                            </td>
-                            <td><mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Stock</mat-label>
-                            <input matInput type="number" formControlName="Stock" autocomplete="off">
-                            </mat-form-field></td>
-                            <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Precio</mat-label>
-                            <input type="number" matInput formControlName="Precio" autocomplete="off">
-                            </mat-form-field>
-                        </tr></table>                    
-                        <br>
-                    <div>              
-                        <button style="margin-left: 300px;" mat-stroked-button color="primary" [disabled]="productoFomr.invalid"><mat-icon> save</mat-icon>Guardar</button>
-                    </div>
-                </form>
-            </mat-tab>
-            
-            
-        </mat-tab-group>
-    </mat-card>  
+<div class="container"*ngIf="modalSwitch == false">
+    <div mat-dialog-content>
+        <mat-card-title class="text-primary espacioproducto">Productos</mat-card-title>
+        <br>
+        <mat-card>
+            <mat-tab-group [selectedIndex]="selected.value" mat-align-tabs="start" (selectedIndexChange)="selected.setValue($event)">
+                <!-- Listado de Producto-->
+                <mat-tab label="Listado">
+                    <br>
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+                
+                        <!-- Nombre Column -->
+                        <ng-container matColumnDef="demo-nombre">
+                            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                        </ng-container>
+                
+                        <!-- Stock Column -->
+                        <ng-container matColumnDef="demo-stock">
+                        <th mat-header-cell *matHeaderCellDef>Stock</th>
+                        <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+                        </ng-container>
+                
+                        <!-- Precio Column -->
+                        <ng-container matColumnDef="demo-precio">
+                        <th mat-header-cell *matHeaderCellDef>Precio</th>
+                        <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="demo-acciones">
+                            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                            <td mat-cell *matCellDef="let element"> {{element.acciones}} 
+                            <button mat-raised-button color="warn" (click)="eliminarproducto(element._id)"><mat-icon>delete</mat-icon></button>
+                            <button mat-button color="accent" (click)="openDialog(element)"><mat-icon>update</mat-icon></button></td>
+                        </ng-container>
+                
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </mat-tab>
+                <!-- Agregar Producto-->                        
+                    <mat-tab label="Agregar Producto">     
+                        <form [formGroup]="productoFomr" (ngSubmit)="GuardarProducto()">
+                            <br>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Categoría</mat-label>
+                                <mat-select formControlName="Categoria">
+                                <mat-option *ngFor="let category of categorias" [value]="category._id">
+                                    {{category.nombre}}
+                                </mat-option>
+                                </mat-select>
+                            </mat-form-field>          
+                            <mat-form-field style="margin-right: 17px;" appearance="fill">
+                                <mat-label>Nombre</mat-label>
+                                <input matInput formControlName="Nombre" autocomplete="off">
+                            </mat-form-field>                          
+                            <mat-form-field appearance="fill">
+                                <mat-label>Subir o Cambiar Foto de Perfil</mat-label>
+                                <ngx-mat-file-input formControlName="Imagen" [accept]="'.jpg, png, jpeg'" (change)="obtenerImagen($event)"></ngx-mat-file-input>
+                                <mat-icon matSuffix>folder</mat-icon>
+                            </mat-form-field>                    
+                            <table class="example-full-width" cellspacing="0"><tr>
+                                <td><mat-form-field style="margin-right: 17px;" appearance="fill">
+                                    <mat-label>Cosecha</mat-label>
+                                    <input matInput formControlName="Cosecha" autocomplete="off">
+                                </mat-form-field>                            
+                                </td>
+                                <td><mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Stock</mat-label>
+                                <input matInput type="number" formControlName="Stock" autocomplete="off">
+                                </mat-form-field></td>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Precio</mat-label>
+                                <input type="number" matInput formControlName="Precio" autocomplete="off">
+                                </mat-form-field>
+                            </tr></table>                    
+                            <br>
+                        <div>              
+                            <button style="margin-left: 300px;" mat-stroked-button color="primary" [disabled]="productoFomr.invalid"><mat-icon> save</mat-icon>Guardar</button>
+                        </div>
+                    </form>
+                </mat-tab>
+                
+                
+            </mat-tab-group>
+        </mat-card>  
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon>Cancelar</button>
+    </div>
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon>Cancelar</button>
-</div>
+<app-modificar *ngIf="modalSwitch == true" [producto]="udtproducto"></app-modificar>

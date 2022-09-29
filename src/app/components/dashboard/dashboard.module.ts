@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoriaComponent } from '../categoria/categoria.component';
 import { ProductoComponent } from '../producto/producto.component';
 import { CarritoComponent } from '../carrito/carrito.component';
+import { ModificarComponent } from '../producto/modificar/modificar.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CarritoComponent } from '../carrito/carrito.component';
     DialogOverviewExampleDialog,
     CategoriaComponent,
     ProductoComponent,
-    CarritoComponent
+    CarritoComponent,
+    ModificarComponent
   ],
   imports: [
     CommonModule,
