@@ -44,7 +44,7 @@
                 </mat-card-content>
                 <mat-divider inset></mat-divider>
                 <mat-card-actions>
-                  <button mat-button (click)="openDialogProducto(p)" [disabled]="p.stock == 0"><mat-icon>receipt_long</mat-icon> Ver Producto</button>
+                  <button mat-stroked-button color="primary" style="left: 70px;top: 10px;" (click)="openDialogProducto(p)" [disabled]="p.stock == 0"><mat-icon>receipt_long</mat-icon> Ver Producto</button>
                 </mat-card-actions>
                 <mat-card-footer>
                   <mat-progress-bar class="mat-progress" id="{{p._id}}" [mode]="mode"></mat-progress-bar>

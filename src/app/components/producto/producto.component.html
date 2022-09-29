@@ -28,9 +28,9 @@
             
                     <ng-container matColumnDef="demo-acciones">
                         <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                        <td mat-cell *matCellDef="let element"> {{element.acciones}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.acciones}} 
                         <button mat-raised-button color="warn" (click)="eliminarproducto"><mat-icon>delete</mat-icon></button>
-                        <button mat-button color="accent" (click)="actualizarproducto"><mat-icon>update</mat-icon></button>
+                        <button mat-button color="accent" (click)="actualizarproducto"><mat-icon>update</mat-icon></button></td>
                     </ng-container>
             
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -74,4 +74,4 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon>Cancelar</button>
-  </div>
+</div>

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title style="margin-bottom: 0px;"><b>Nombre:</b> {{data.nombre}}</h2>
+<h2 mat-dialog-title style="margin-bottom: 0px;text-align: center;"><b>Nombre:</b> {{data.nombre}}</h2>
 <mat-divider style="margin-bottom: 16px;"></mat-divider>
 <h3 mat-dialog-subtitle><b>Categoria:</b> {{data.categoria}}</h3>
 <div mat-dialog-content>
@@ -17,7 +17,7 @@
 
   <p><b>$ {{(selected*data.precio).toFixed(2)}}</b></p>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon> Cancelar</button>
-  <button mat-button (click)="AddCarrito(data)" [disabled]="(selected*data.precio) == 0"><mat-icon>shopping_cart_checkout</mat-icon> Agregar</button>
+<div mat-dialog-actions style="margin-left: 40px;margin-bottom: 5px;">
+  <button mat-button  style="right: 10px;left: auto;margin-left: 20px;" (click)="onNoClick()"><mat-icon>logout</mat-icon> Cancelar</button>
+  <button mat-button style="margin-left: 10px;" (click)="AddCarrito(data)" [disabled]="(selected*data.precio) == 0"><mat-icon>shopping_cart_checkout</mat-icon> Agregar</button>
 </div>

@@ -1,13 +1,13 @@
 <div mat-dialog-content>    
     <div class="login">
-        <mat-card-title class="text-primary espacio">Tipos de Vino</mat-card-title>        
+        <mat-card-title class="text-primary espacio">Tipos de Vino</mat-card-title>
+        <br>
         <mat-card *ngIf="!loading" class="example-card cajaSession">            
             <mat-card-header >                
                 </mat-card-header>
                 <mat-card-content>           
                     <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-                        <mat-tab label="Listado">
-                            <br>
+                        <mat-tab label="Listado">                            
                             <div>
                                 <mat-table [dataSource]="dataSource" matSort>
                                     
@@ -53,12 +53,13 @@
                                     <input matInput placeholder="El Vino Tinto se produce..." formControlName="Descripcion" required>
                                 </mat-form-field>
                                 <br>
-                                <button type="submit" mat-raised-button color="primary"><mat-icon>save</mat-icon>Guardar</button>
+                                <button type="submit" style="left: 40px;" mat-stroked-button color="primary"><mat-icon>save</mat-icon>Guardar</button>
                             </form> 
                         </div>                           
                         </mat-tab>
 
                         <mat-tab label="Actualizar">
+                            <br>
                             <div class="parent">
                                 <form [formGroup]="AcategoriaForm" (ngSubmit)="actualizarCategoria()">
                                     <mat-form-field class="example-full-width" appearance="fill">
@@ -76,7 +77,7 @@
                                         <input matInput placeholder="El Vino Tinto se produce..." formControlName="ADescripcion" required>
                                     </mat-form-field>
                                     <br>
-                                    <button type="submit" mat-raised-button color="primary"><mat-icon>update</mat-icon>Actualizar</button>
+                                    <button type="submit" style="left: 40px;" mat-stroked-button color="primary"><mat-icon>update</mat-icon>Actualizar</button>
                                 </form> 
                             </div>                           
                             </mat-tab>
