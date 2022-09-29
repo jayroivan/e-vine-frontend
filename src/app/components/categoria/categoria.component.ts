@@ -3,11 +3,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ThemePalette } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Categoria } from 'src/app/models/categoria';
-import { CategoriaService } from '../../services/categoria.service'
+import { CategoriaService } from '../../services/categoria.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categoria',
@@ -22,6 +22,7 @@ export class CategoriaComponent implements OnInit {
   AcategoriaForm: FormGroup
   loading = false;
   hide = true;  
+  actualizar = false;
   selected = new FormControl(0);
   dataSource!: MatTableDataSource<Categoria>;
   displayedColumns = ['nombre', 'descripcion', 'Acciones' ];
@@ -35,10 +36,7 @@ export class CategoriaComponent implements OnInit {
     private categoriaService: CategoriaService
      )
    {
-    this.categoriaService.allcategorias(sessionStorage.getItem('token')!).subscribe((categorias) => {
-      this.dataSource = new MatTableDataSource(categorias);
-      console.log(categorias)
-    });
+    
 
     this.categoriaForm = this._builder.group({
       Nombre: ['', Validators.required],
@@ -57,9 +55,13 @@ export class CategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.categoriaService.allcategorias(sessionStorage.getItem('token')!).subscribe((categorias) => {
+      this.dataSource = new MatTableDataSource(categorias);
+    });
   }
 
   onRowClicked(row: any) {
+    this.actualizar = true,
     this.AcategoriaForm.setValue({
       _id: row._id,
       ANombre: row.nombre,
@@ -77,31 +79,64 @@ export class CategoriaComponent implements OnInit {
     this.categoriaService.postcategoria(this.categoria, sessionStorage.getItem('token')!).subscribe((res)=> {
       console.log(res);
       if(res != null){
+        Swal.fire({
+          icon: 'success',
+          title: 'Good Job!',
+          text: 'Categoria Creada con Exito!',
+        })
+        this.ngOnInit();
         this.selected.setValue(0);
       }else {
         this.categoriaForm.reset();
       }
     }, err => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No se pudo actualizar la Categoria',
+      })
       this.categoriaForm.reset();
     })
   }
 
   eliminarCategoria(row: Categoria){    
-    this.categoriaService.delete(row._id!.toString()).subscribe((res) =>
-    console.log(res)
-    )
+    this.categoriaService.delete(row._id!.toString()).subscribe((res) =>{
+    if (res =! null) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Good Job!',
+        text: 'Categoria Eliminada con Exito!',
+      })
+      this.ngOnInit();
+    }
+  })
 
   }
 
   actualizarCategoria(){
+    let message = {}
     this.categoria = {
     _id: this.AcategoriaForm.value._id,
     nombre: this.AcategoriaForm.value.ANombre,
     descripcion: this.AcategoriaForm.value.ADescripcion,
     }
-    this.categoriaService.update(this.categoria).subscribe((res) => 
-    console.log(res)
-    )
+    this.categoriaService.update(this.categoria).subscribe((res) => {
+    if (res) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Good Job!',
+        text: 'Categoria Actualizada con Exito!',
+      })
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No se pudo actualizar la Categoria',
+      })
+    }
+  })
+    this.actualizar = false,
+    this.ngOnInit(),
     this.selected.setValue(0)
   }
 }
