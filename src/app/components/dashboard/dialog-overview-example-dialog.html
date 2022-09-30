@@ -1,23 +1,24 @@
-<h2 mat-dialog-title style="margin-bottom: 0px;text-align: center;"><b>Nombre:</b> {{data.nombre}}</h2>
-<mat-divider style="margin-bottom: 16px;"></mat-divider>
-<h3 mat-dialog-subtitle><b>Categoria:</b> {{data.categoria}}</h3>
-<div mat-dialog-content>
-  <p><b>Cosecha:</b> {{data.cosecha}}</p>
-  <p><b>Sotck:</b> {{data.stock}}</p>
-  <p><b>Precio:</b> $ {{data.precio}}</p>
+<form [formGroup]="carritoForm" (ngSubmit)="AddCarrito()">
+  <h2 mat-dialog-title style="margin-bottom: 0px;text-align: center;"><b>Nombre:</b> {{data.nombre}}</h2>
+  <mat-divider style="margin-bottom: 16px;"></mat-divider>
+  <h3 mat-dialog-subtitle><b>Categoria:</b> {{data.categoria}}</h3>
+  <div mat-dialog-content>
+    <p><b>Cosecha:</b> {{data.cosecha}}</p>
+    <p><b>Sotck:</b> {{data.stock}}</p>
+    <p><b>Precio:</b> $ {{data.precio}}</p>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Seleccione una cantidad</mat-label>
-    <mat-select [(value)]="selected" disableRipple>
-      <mat-option value="1">1</mat-option>
-      <mat-option value="2">2</mat-option>
-      <mat-option value="3">3</mat-option>
-    </mat-select>
-  </mat-form-field>  
-
-  <p><b>$ {{(selected*data.precio).toFixed(2)}}</b></p>
-</div>
-<div mat-dialog-actions style="margin-bottom: 5px; justify-content: space-between;">
-  <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon> Cancelar</button>
-  <button mat-button (click)="AddCarrito(data)" [disabled]="(selected*data.precio) == 0"><mat-icon>shopping_cart_checkout</mat-icon> Agregar</button>
-</div>
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccione una cantidad</mat-label>
+      <mat-select formControlName="Cantidad" [(value)]="selected" disableRipple>
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
+        <mat-option value="3">3</mat-option>
+      </mat-select>
+    </mat-form-field>  
+    <input matInput type="text" value="$ {{(selected*data.precio).toFixed(2)}}" readonly="true">
+  </div>
+  <div mat-dialog-actions style="margin-bottom: 5px; justify-content: space-between;">
+    <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon> Cancelar</button>
+    <button mat-button [disabled]="carritoForm.invalid"><mat-icon>shopping_cart_checkout</mat-icon> Agregar</button>
+  </div>
+</form>

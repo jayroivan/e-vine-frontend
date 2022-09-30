@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatProgressBar, ProgressBarMode } from '@angular/material/progress-bar';
 import { Router } from '@angular/router';
+import { Carrito } from 'src/app/models/carrito';
 import { Producto } from 'src/app/models/productos';
 import { ProductoService } from 'src/app/services/producto.service';
 import { CategoriaComponent } from '../categoria/categoria.component';
@@ -148,14 +149,42 @@ export class DashboardComponent implements OnInit {
 })
 export class DialogOverviewExampleDialog {
   selected = 0.00;
-
+  carrito!: Carrito;
+  carritos: Carrito[] = [];
+  carritoForm: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: Producto,
-    private productoService: ProductoService
-  ) {}
+    private productoService: ProductoService,
+    private _builder: FormBuilder
+  ) {
+    this.carritoForm = this._builder.group({
+      Cantidad: ['', Validators.required]
+    })
+  }
 
-  AddCarrito(producto:Producto){
+  AddCarrito(){
+    this.carrito = {
+      producto: this.data,
+      nombre: this.data.nombre,
+      cantidad: this.carritoForm.value.Cantidad,
+      precio: this.data.precio,
+      subtotal: parseFloat((this.data.precio*this.carritoForm.value.Cantidad).toFixed(2))
+    }
+
+    this.carritos.push(this.carrito);
+
+    var local = localStorage.getItem('carrito');
+    if(local == null){
+      sessionStorage.setItem('carrito', JSON.stringify(this.carritos));
+    }else{
+      JSON.parse(local).forEach((item: Carrito) => {
+        this.carritos.push(item);
+      });
+      sessionStorage.setItem('carrito', JSON.stringify(this.carritos));
+    }
+
+    console.log(this.carrito);
     this.productoService.$notificacion.emit(true);
     this.onNoClick()
   }
