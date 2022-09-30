@@ -23,5 +23,13 @@ export interface CarritoElement {
   subtotal: number;
 }
 const ELEMENT_DATA: CarritoElement[] = [
-  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3}
+  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3},
+  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3},
+  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3},
+  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3},
+  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3},
+  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3},
+  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3},
+  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3},
+  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3},
 ];

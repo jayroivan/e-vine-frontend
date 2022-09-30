@@ -1,6 +1,20 @@
 <mat-card>
-<h1>Mi compra</h1>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <div class="row">
+    <h1>Mi compra</h1>
+    <mat-card class="example-card compra">
+      <mat-card-title>Subtotal:   </mat-card-title>
+      <mat-card-title>Cupones:   </mat-card-title>
+      <mat-card-title>Envio:   </mat-card-title>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-card-title>Total de la compra:</mat-card-title>
+
+      <mat-card-actions style="margin-left: 30px;margin-right: 30px;">
+        <button mat-stroked-button color="primary">Cancelar</button>
+        <button mat-stroked-button color="primary">Comprar</button>
+      </mat-card-actions>
+    </mat-card>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!-- producto Column -->
     <ng-container matColumnDef="producto">
@@ -28,20 +42,6 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
-  <mat-card class="example-card compra">
-    <mat-card-title>Subtotal:   </mat-card-title>
-    <mat-card-title>Cupones:   </mat-card-title>
-    <mat-card-title>Envio:   </mat-card-title>
-    <mat-divider></mat-divider>
-    <br>
-    <mat-card-title>Total de la compra:</mat-card-title>
-  
-    <mat-card-actions>
-      <button mat-button>Comprar</button>
-      <button mat-button>Cancelar</button>
-    </mat-card-actions>
-  </mat-card>
-
+    </table>
+  </div>
 </mat-card>
