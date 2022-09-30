@@ -1,163 +1,51 @@
-#cart{
-    overflow-x: auto;
+table {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;    
 }
-
-#cart table {
-    width: 100%;	
-    table-layout: fixed;
-    padding: 10px;
-    margin: auto;
-}
-
-#cart table img{
-    width: 70px;
-    padding: 10px;
+.mat-card{
+margin-left: auto;
+margin-right: auto;
+width: 85%;
+margin-top: 50px;  
 
 }
 
-#cart input{
-    width: .23em;
-    padding: 5px 5px;
-    outline: none;
-    border: 1px solid #e2e9e1;
-    border-radius: 10em;
-}
-
-#cart button{
-    display: inline;
-    padding: 4px 4px;
-    outline: none;
-    width: 20%;
-    height: 35px;
-    border: 1px solid #e2e9e1;
-    border-radius: 5em;
-}
-
-#cart table td:nth-child(1) {
-    width: 100px;
-    border-collapse: collapse;
-    text-align: center;
-    font-family: sans-serif;
+.mat-column-producto {
+    padding-left: 16px;
     font-size: 15px;
-    text-emphasis: bold;
-}
 
+  }
 
-#cart table td:nth-child(2) {
-    width: 150px;
-    border-collapse: collapse;
-    text-align: center;
-    font-family: sans-serif;
-    border-bottom: 1px solid #e2e9e1;
-
-}
-
-#cart table td:nth-child(3) {
-    width: 250px;
-    text-align: center;
-    font-family: sans-serif;
-    border-collapse: collapse;
-    border-bottom: 1px solid #e2e9e1;
-
-}
-
-#cart table td:nth-child(4),
-#cart table td:nth-child(5),
-#cart table td:nth-child(6) {
-    width: 150px;
-    text-align: center;
-    font-family: sans-serif;
-    border-collapse: collapse;
-    border-bottom: 1px solid #e2e9e1;
-
-}
-
-#cart table td:nth-child(5) input{
-    width: 70px;
-    padding: 10px 5px 10px 15px;
-    text-align: center;
-    font-family: sans-serif;
-    border-bottom: 1px solid #e2e9e1;
-}
-
-#cart table thead{
-    border: 1px solid #e2e9e1;
-    border-left: none;
-    border-right: none;
-    font-family: sans-serif;
-    border-collapse: collapse;
-}
-
-#cart table thead td{
+.mat-column-unitario {
+    padding-left: 16px;
     font-size: 15px;
-    padding: 18px 0;
-    font-family: sans-serif;
-    border-collapse: collapse;
-}
+    text-align: center;
+  }
+  
+  .mat-column-cantidad {
+    padding-left: 16px;
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  .mat-column-subtotal {
+    text-align: center;
+    padding-left: 16px;
+    font-size: 15px;
+  }
 
-#cart table tbody tr td{
-    padding-top: 0px;
-}
+  .example-card {
+    max-width: 400px;
+  }
 
-#cart table tbody td{
-    font-size: 13px;
-}
-
-#Subtotals{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-
-#cupon{
-    width: 40%;
-    margin-bottom: 30px;
-    padding: 20px;
-}
-
-#cart h3,
-#cupon h3, 
-#subtotal h3{
-    padding: 15px;
-}
-
-#cupon input{
-    padding: 10px 20px;
-    outline: none;
-    width: 60%;
-    margin-right: 10px;
-    border: 1px solid #e2e9e1;
-}
-
-#cupon button,
-#Subtotales button{
-    background-color: #CD6155;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 0.70em;
-    border-color: #D98880;
-    cursor: pointer;
-    box-shadow: 0 0.25em #999999;
-}
-
-#Subtotales{
-    width: 50%;
-    margin-bottom: 30px;
-
-    padding: 30px;
-}
-
-#Subtotales table{
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-#Subtotales table td{
-    width: 50%;
-    border-bottom: 0.5px solid #e2e9e1;
-    padding: 10px;
-    font-size: 13px;
-    font-family: sans-serif;
+  .compra {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: px; 
+    height: 202px;  
+    width: 290px;
+ 
 }
