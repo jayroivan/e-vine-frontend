@@ -10,6 +10,10 @@ import { SharedModule } from './components/shared/shared.module';
 import { MatInputModule } from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ModificarComponent } from './components/producto/modificar/modificar.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -23,8 +27,12 @@ import { ModificarComponent } from './components/producto/modificar/modificar.co
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
+    MatCardModule,
+    MatSliderModule,
     MatInputModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatGridListModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
