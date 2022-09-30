@@ -9,6 +9,7 @@ import { ProductoComponent } from '../producto/producto.component';
 import { CarritoComponent } from '../carrito/carrito.component';
 import { ModificarComponent } from '../producto/modificar/modificar.component';
 import { OrdenComponent } from '../orden/orden.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { OrdenComponent } from '../orden/orden.component';
     ProductoComponent,
     CarritoComponent,
     ModificarComponent,
-    OrdenComponent
+    OrdenComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
