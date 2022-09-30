@@ -1,0 +1,36 @@
+.espacio{
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.demo-table {
+    width: 100%;
+}
+  
+  .mat-column-demo-numero {    
+    border-right: 1px solid  #e0e0e0;
+    padding-left: 20px;
+    font-size: 20px;
+    text-align: center;
+    width: 100px;
+}
+  
+  .mat-column-demo-fecha {
+    padding-left: 16px;
+    font-size: 20px;
+    text-align: center;
+    width: 100px;
+  }
+  
+  .mat-column-demo-total {
+    padding-left: 16px;
+    font-size: 20px;
+    text-align: center;
+    width: 100px;
+  }
+  
+  .mat-column-demo-usuario {
+    padding-left: 16px;
+    font-size: 20px;
+    text-align: center;
+    width: 170px;
+  }

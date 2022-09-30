@@ -27,7 +27,7 @@
                                     <ng-container matColumnDef="Acciones">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header class="w-100"> Acciones </mat-header-cell>
                                         <mat-cell *matCellDef="let row" text-align:center>
-                                        <button mat-raised-button color="warn" (click)="eliminarCategoria(row)"><mat-icon>delete</mat-icon></button>
+                                        <button mat-mini-fab color="warn" (click)="eliminarCategoria(row)"><mat-icon>delete</mat-icon></button>
                                         <button mat-button color="accent" (click)="onRowClicked(row)"><mat-icon>update</mat-icon></button>
                                         </mat-cell>
                                     </ng-container>

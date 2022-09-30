@@ -5,6 +5,10 @@
     flex-direction: column;
   }
 
+  .espacio{
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
 mat-header-cell {
   padding: 3%;
   align-items: center !important;
@@ -18,16 +22,19 @@ mat-cell {
 
 .mat-column-nombre {
   flex: none;
+  font-size: 18px;
   width: 175px;
 }
 
 .mat-column-descripcion {
   flex: none;
+  font-size: 18px;
   width: 300px;
 }
 
-.mat-column-acciones {
+.mat-column-Acciones {
   flex: none;
+  font-size: 18px;
   width: 200px;
 }
 

@@ -9,6 +9,7 @@ import { Producto } from 'src/app/models/productos';
 import { OrdenService } from 'src/app/services/orden.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { CategoriaComponent } from '../categoria/categoria.component';
+import { OrdenComponent } from '../orden/orden.component';
 import { ProductoComponent } from '../producto/producto.component';
 
 @Component({
@@ -127,6 +128,16 @@ export class DashboardComponent implements OnInit {
 
   openProducto(){
     const dialogRef = this.dialog.open(ProductoComponent, {
+      width: '800px',
+      data: { name: this.name, color: this.color}
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.color = res;
+    });
+  }
+
+  openOrden(){
+    const dialogRef = this.dialog.open(OrdenComponent, {
       width: '800px',
       data: { name: this.name, color: this.color}
     });
