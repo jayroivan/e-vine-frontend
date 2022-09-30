@@ -18,6 +18,10 @@ export class CategoriaService {
         return this.http.post<Categoria>(`${this.url}/categoria/crear`, categoria, { headers: headers});
       }
 
+    getById(id: string, token: string): Observable<Categoria>{
+      return this.http.get<Categoria>(`${this.url}/categoria/obtenerUno/${id}`);
+    }
+
     allcategorias(tokens: string): Observable<Categoria[]>{
         const headers = new HttpHeaders().set('Authorization', `Bearer ${tokens.replace(/['"]+/g, '')}`);
         return this.http.get<Categoria[]>(`${this.url}/categoria/todos`, {headers: headers})

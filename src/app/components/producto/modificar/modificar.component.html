@@ -1,9 +1,10 @@
 <h1 mat-dialog-title>Actualizar Producto</h1>
-<div mat-dialog-content>     
-    <br>
+<div mat-dialog-content>
+  <form [formGroup]="productoForm" (ngSubmit)="Actualizar()">
+    <br>    
     <mat-form-field appearance="fill">
         <mat-label>Categoría </mat-label>
-        <mat-select>
+        <mat-select formControlName="Categoria">
           <mat-option *ngFor="let category of categorias" [value]="category._id">
             {{category.nombre}}
           </mat-option>
@@ -11,26 +12,31 @@
       </mat-form-field>          
     <mat-form-field style="margin-right: 17px;" appearance="fill">
         <mat-label>Nombre </mat-label>
-        <input matInput autocomplete="off">
+        <input formControlName="Nombre" matInput autocomplete="off">
     </mat-form-field>       
     <mat-form-field appearance="fill">
         <mat-label>Subir o Cambiar Foto de Perfil</mat-label>
-        <ngx-mat-file-input [accept]="'.jpg, png, jpeg'"></ngx-mat-file-input>
+        <ngx-mat-file-input [accept]="'.jpg, png, jpeg'" formControlName="Imagen" (change)="obtenerImagen($event)"></ngx-mat-file-input>
         <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>
     
     <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Cosecha</mat-label>
+        <input formControlName="Cosecha" matInput type="text" autocomplete="off">
+      </mat-form-field></td>
         <td><mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Stock</mat-label>
-          <input matInput type="number" autocomplete="off">
+          <input formControlName="Stock" matInput type="number" autocomplete="off">
         </mat-form-field></td>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Precio</mat-label>
-          <input type="number" matInput autocomplete="off">
+          <input formControlName="Precio" type="number" matInput autocomplete="off">
         </mat-form-field>
     </tr></table>                    
     <br>
     <div>              
-        <button type="submit"  style="margin-left: 300px;" mat-stroked-button color="primary"><mat-icon> save</mat-icon>Guardar</button>
+        <button type="submit"  style="margin-left: 300px;" mat-stroked-button color="primary" [disabled]="productoForm.invalid"><mat-icon> save</mat-icon>Guardar</button>
     </div>
+  </form>         
 </div>

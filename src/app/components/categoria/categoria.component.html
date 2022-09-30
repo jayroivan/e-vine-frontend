@@ -43,14 +43,14 @@
                         <br>
                         <div class="parent">
                             <form [formGroup]="categoriaForm" (ngSubmit)="registrarCategoria()">
-                                <mat-form-field class="example-full-width" appearance="fill">
-                                    <mat-label class="text-primary">Nombre</mat-label>
+                                <mat-form-field class="fill" appearance="fill">
+                                    <mat-label>Nombre</mat-label>
                                     <input matInput formControlName="Nombre">
                                 </mat-form-field>
                                 <br>
-                                <mat-form-field class="example-full-width" appearance="fill">
-                                    <mat-label class="text-primary">Descripcion</mat-label>
-                                    <input matInput placeholder="El Vino Tinto se produce..." formControlName="Descripcion" required>
+                                <mat-form-field class="fill" appearance="fill">
+                                    <mat-label>Descripcion</mat-label>
+                                    <input matInput placeholder="El Vino Tinto se produce..." formControlName="Descripcion">
                                 </mat-form-field>
                                 <br>
                                 <button type="submit" style="left: 40px;" mat-stroked-button color="primary"><mat-icon>save</mat-icon>Guardar</button>
@@ -58,26 +58,27 @@
                         </div>                           
                         </mat-tab>
 
-                        <mat-tab label="Actualizar">
+                        <mat-tab label="Actualizar" *ngIf="actualizar">
                             <br>
                             <div class="parent">
                                 <form [formGroup]="AcategoriaForm" (ngSubmit)="actualizarCategoria()">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label class="text-primary">Id</mat-label>
-                                        <input matInput formControlName="_id">
+                                    <mat-form-field class="fill" appearance="fill">
+                                        <mat-label>Id</mat-label>
+                                        <input matInput formControlName="_id" readonly="">
                                     </mat-form-field>
                                     <br>
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label class="text-primary">Nombre</mat-label>
+                                    <mat-form-field class="fill" appearance="fill">
+                                        <mat-label>Nombre</mat-label>
                                         <input matInput formControlName="ANombre">
                                     </mat-form-field>
                                     <br>
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label class="text-primary">Descripcion</mat-label>
+                                    <mat-form-field class="fill" appearance="fill">
+                                        <mat-label>Descripcion</mat-label>
                                         <input matInput placeholder="El Vino Tinto se produce..." formControlName="ADescripcion" required>
                                     </mat-form-field>
                                     <br>
-                                    <button type="submit" style="left: 40px;" mat-stroked-button color="primary"><mat-icon>update</mat-icon>Actualizar</button>
+                                    <button type="submit" mat-stroked-button color="primary"><mat-icon>update</mat-icon>Actualizar</button>
+                                    <button mat-button (click)="this.selected.setValue(0)"><mat-icon>logout</mat-icon>Cancelar</button>
                                 </form> 
                             </div>                           
                             </mat-tab>

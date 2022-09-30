@@ -18,6 +18,6 @@
   <p><b>$ {{(selected*data.precio).toFixed(2)}}</b></p>
 </div>
 <div mat-dialog-actions style="margin-bottom: 5px; justify-content: space-between;">
-  <button mat-button  style="right: 10px;left: auto;margin-left: 20px;" (click)="onNoClick()"><mat-icon>logout</mat-icon> Cancelar</button>
-  <button mat-button style="margin-left: 10px;" (click)="AddCarrito(data)" [disabled]="(selected*data.precio) == 0"><mat-icon>shopping_cart_checkout</mat-icon> Agregar</button>
+  <button mat-button (click)="onNoClick()"><mat-icon>logout</mat-icon> Cancelar</button>
+  <button mat-button (click)="AddCarrito(data)" [disabled]="(selected*data.precio) == 0"><mat-icon>shopping_cart_checkout</mat-icon> Agregar</button>
 </div>
