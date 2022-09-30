@@ -11,25 +11,24 @@
 }
 .mat-column-demo-nombre {
   padding-left: 16px;
-  font-size: 20px;
-  text-align: center;
+  font-size: 16px;
   width: 100px;
 }
 .mat-column-demo-stock {
   padding-left: 16px;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
   width: 100px;
 }
 .mat-column-demo-precio {
   padding-left: 16px;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
   width: 100px;
 }
 .mat-column-demo-acciones {
   padding-left: 16px;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
   border-left: 1px solid  #e0e0e0;
   width: 170px;

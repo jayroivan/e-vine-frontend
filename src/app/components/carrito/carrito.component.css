@@ -1,14 +1,14 @@
 table {
-    width: 75%;
+    width: 95%;   
+    margin-top: 10px;    
     margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;    
+    margin-right: auto;   
 }
 .mat-card{
 margin-left: auto;
 margin-right: auto;
-width: 85%;
-margin-top: 50px;  
+width: 85%; 
+margin-top: 10px;  
 
 }
 
@@ -18,7 +18,7 @@ margin-top: 50px;
 
   }
 
-.mat-column-unitario {
+.mat-column-precio {
     padding-left: 16px;
     font-size: 15px;
     text-align: center;
@@ -40,12 +40,11 @@ margin-top: 50px;
     max-width: 400px;
   }
 
-  .compra {
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: px; 
-    height: 202px;  
-    width: 290px;
- 
+.compra {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: px; 
+  height: 202px;  
+  width: 290px;
 }
