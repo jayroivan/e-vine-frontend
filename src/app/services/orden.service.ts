@@ -22,6 +22,11 @@ export class OrdenService {
     return this.http.get<Orden[]>(`${this.url}/orden/todos`, {headers: httpHeaders});
   }
 
+  getLastOrder(): Observable<Orden>{
+    const httpHeaders = this.getHeaders();
+    return this.http.get<Orden>(`${this.url}/orden/obtenerultimaorden`, {headers: httpHeaders})
+  }
+
   post(orden: Orden): Observable<Orden>{
     const httpHeaders = this.getHeaders();
     return this.http.post<Orden>(`${this.url}/orden/crear`, orden, {headers: httpHeaders});
@@ -33,7 +38,8 @@ export class OrdenService {
   }
 
   delete(id: string): Observable<Orden>{
-    return this.http.delete<Orden>(`${this.url}/orden/eliminar/${id}`);
+    const httpHeaders = this.getHeaders();
+    return this.http.delete<Orden>(`${this.url}/orden/eliminar/${id}`, {headers: httpHeaders});
   }
 
   getHeaders(): HttpHeaders {
