@@ -9,14 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from './components/shared/shared.module';
 import { MatInputModule } from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { ProfileComponent } from './components/profile/profile.component';
-import { ModificarComponent } from './components/producto/modificar/modificar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    ProfileComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

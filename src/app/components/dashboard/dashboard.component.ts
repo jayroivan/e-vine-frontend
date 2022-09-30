@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatProgressBar, ProgressBarMode } from '@angular/material/progress-bar';
+import { ProgressBarMode } from '@angular/material/progress-bar';
 import { Router } from '@angular/router';
 import { Producto } from 'src/app/models/productos';
 import { ProductoService } from 'src/app/services/producto.service';
@@ -24,6 +23,7 @@ export class DashboardComponent implements OnInit {
   producto!: Producto;
   search: FormControl = new FormControl(''); 
   carrito: boolean = false;
+  profile: boolean = false;
 
   mode: ProgressBarMode = 'indeterminate';
   loading = false;
@@ -133,11 +133,18 @@ export class DashboardComponent implements OnInit {
   }
 
   Home(){
+    this.profile = false;
     this.carrito = false;
   }
 
   Carrito(){
+    this.profile = false;
     this.carrito = true;
+  }
+
+  Profile(){
+    this.carrito = false;
+    this.profile = true;
   }
 
 }

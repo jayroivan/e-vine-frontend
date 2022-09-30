@@ -81,10 +81,11 @@ export class CategoriaComponent implements OnInit {
       if(res != null){
         Swal.fire({
           icon: 'success',
-          title: 'Good Job!',
-          text: 'Categoria Creada con Exito!',
+          title: 'Excelente!',
+          text: 'Creado con Exito!',
         })
         this.ngOnInit();
+        this.categoriaForm.reset();
         this.selected.setValue(0);
       }else {
         this.categoriaForm.reset();
@@ -93,7 +94,7 @@ export class CategoriaComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'No se pudo actualizar la Categoria',
+        text: 'No se pudo actualizar',
       })
       this.categoriaForm.reset();
     })
@@ -104,8 +105,8 @@ export class CategoriaComponent implements OnInit {
     if (res =! null) {
       Swal.fire({
         icon: 'success',
-        title: 'Good Job!',
-        text: 'Categoria Eliminada con Exito!',
+        title: 'Excelente!',
+        text: 'Eliminado con Exito!',
       })
       this.ngOnInit();
     }
@@ -124,14 +125,14 @@ export class CategoriaComponent implements OnInit {
     if (res) {
       Swal.fire({
         icon: 'success',
-        title: 'Good Job!',
-        text: 'Categoria Actualizada con Exito!',
+        title: 'Excelente!',
+        text: 'Actualizado con Exito!',
       })
     } else {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'No se pudo actualizar la Categoria',
+        text: 'No se pudo actualizar',
       })
     }
   })

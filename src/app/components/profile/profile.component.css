@@ -1,0 +1,16 @@
+.example-card {
+    max-width: 50%;
+    align-items: center !important;
+    margin: auto;
+  }
+
+section{
+    overflow-x: auto;
+    align-items: center !important;
+    margin: auto;
+}
+
+mat-card-content{
+  align-items: flex-end !important;
+  margin: auto;
+}

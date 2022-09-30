@@ -15,12 +15,12 @@
     </button>
     <button mat-button matTooltip="Cuenta" [matMenuTriggerFor]="menu"><mat-icon>person_pin</mat-icon></button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item ><mat-icon>manage_accounts</mat-icon>Ajustes</button>
+        <button mat-menu-item matTooltip="Profile" (click)="Profile()"><mat-icon>manage_accounts</mat-icon>Ajustes</button>
         <button mat-menu-item (click)="Logout()"><mat-icon>logout</mat-icon>Cerrar Sesion</button>
     </mat-menu>
 </mat-toolbar>
 
-<div class="container" *ngIf="isAuthenticated && carrito == false">
+<div class="container" *ngIf="isAuthenticated && carrito == false && profile == false">
     <div class="row mt-4">
         <h1>Lista de Vinos</h1>
         <mat-form-field>
@@ -55,3 +55,4 @@
 </div>
 
 <app-carrito *ngIf="isAuthenticated && carrito == true"></app-carrito>
+<app-profile *ngIf="isAuthenticated && profile == true"></app-profile>
