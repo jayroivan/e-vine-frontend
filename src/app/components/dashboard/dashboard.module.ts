@@ -8,6 +8,7 @@ import { CategoriaComponent } from '../categoria/categoria.component';
 import { ProductoComponent } from '../producto/producto.component';
 import { CarritoComponent } from '../carrito/carrito.component';
 import { ModificarComponent } from '../producto/modificar/modificar.component';
+import { OrdenComponent } from '../orden/orden.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ModificarComponent } from '../producto/modificar/modificar.component';
     CategoriaComponent,
     ProductoComponent,
     CarritoComponent,
-    ModificarComponent
+    ModificarComponent,
+    OrdenComponent
   ],
   imports: [
     CommonModule,

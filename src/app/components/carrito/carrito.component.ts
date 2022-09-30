@@ -1,5 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { render} from 'creditcardpayments/creditCardPayments';
+import { Carrito } from 'src/app/models/carrito';
+import { Orden } from 'src/app/models/orden';
+import { OrdenService } from 'src/app/services/orden.service';
 
 @Component({
   selector: 'app-carrito',
@@ -9,16 +13,15 @@ import { render} from 'creditcardpayments/creditCardPayments';
 
 export class CarritoComponent implements OnInit {
 
-  producto = {
-    descripcion: 'Vino Venta',
-    precio: '250',
-    img: 'imagen de producto'
-  }
-  
-  displayedColumns: string[] = ['producto', 'unitario', 'cantidad', 'subtotal'];
-  dataSource = ELEMENT_DATA;
+  total: number = 0;
+  orden!: Orden;
+  carrito: Carrito [] = []
+  displayedColumns: string[] = ['producto', 'precio', 'cantidad', 'subtotal'];
+  dataSource!: MatTableDataSource<Carrito>;
 
-  constructor() { 
+  constructor(
+    private ordenService: OrdenService,
+  ) { 
     
   }
 
@@ -27,44 +30,48 @@ export class CarritoComponent implements OnInit {
       {
         id: "#paypal",
         currency: "USD",
-        value: "100.00",
+        value: this.total.toString(),
         onApprove: (details) => {
           alert("Transaction Successfull")
+          this.orden = {
+            numero: 1,
+            total: this.total,
+            detalle: this.carrito
+          }
+          this.ordenService.post(this.orden).subscribe((res) => {
+            sessionStorage.removeItem('carrito');
+            this.ordenService.$cerrarCarrito.emit(true);
+          })
         }
       }
     )
   }
 
   ngOnInit(): void {
-    // paypal
-    // .Buttons({
-    //   createOrder: (data, actions) => {
-    //     return actions.order.create({
-    //       purchase__units: [{
-    //         descripcion: this.producto.descripcion,
-    //         amount: {
-    //           currency_code: 'USD',
-    //           value: this.producto.precio
-    //         }
-    //       }]
-    //     })
-    //   },
-    //   onAprove: async (data, actions) => {
-    //     const order = await actions.order.capture()
-    //     console.log();
-        
-    //   }
-    // })
-    // .render(this.paypalElement.nativeElement);
+    this.CargarDatos();
+    this.Total();
+  }
+
+  CargarDatos(){
+    var local = sessionStorage.getItem('carrito');
+    if(local == null){
+      this.carrito = []
+    }else{
+      this.carrito = JSON.parse(local);
+      console.log(this.carrito);
+      this.dataSource = new MatTableDataSource(this.carrito);
+    }
+  }
+
+  Total(){
+    this.carrito.forEach((item) => {
+      this.total += item.subtotal;
+    })
+  }
+
+  Cancelar(){
+    sessionStorage.removeItem('carrito');
+    this.ordenService.$cerrarCarrito.emit(true);
   }
 
 }
-export interface CarritoElement {
-  producto: string;
-  unitario: number;
-  cantidad: number;
-  subtotal: number;
-}
-const ELEMENT_DATA: CarritoElement[] = [
-  {producto: 'vino', unitario: 1 , cantidad: 3 , subtotal: 3}
-];

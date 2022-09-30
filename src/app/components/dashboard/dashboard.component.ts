@@ -6,6 +6,7 @@ import { MatProgressBar, ProgressBarMode } from '@angular/material/progress-bar'
 import { Router } from '@angular/router';
 import { Carrito } from 'src/app/models/carrito';
 import { Producto } from 'src/app/models/productos';
+import { OrdenService } from 'src/app/services/orden.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { CategoriaComponent } from '../categoria/categoria.component';
 import { ProductoComponent } from '../producto/producto.component';
@@ -33,6 +34,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private productoService: ProductoService,
+    private ordenService: OrdenService,
     public dialog: MatDialog
   ) { }
 
@@ -47,6 +49,11 @@ export class DashboardComponent implements OnInit {
     this.productoService.$refreshProductos.subscribe((res)=> {
       if(res){
         this.ngOnInit();
+      }
+    });
+    this.ordenService.$cerrarCarrito.subscribe((res) => {
+      if(res){
+        this.carrito = false;
       }
     })
   }

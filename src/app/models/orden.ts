@@ -2,7 +2,7 @@ import { Carrito } from "./carrito";
 
 export interface Orden {
     _id?: string;
-    numero: string;
+    numero: number;
     total: number;
-    detalle: Carrito;
+    detalle: Carrito[];
 }

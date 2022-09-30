@@ -19,7 +19,7 @@ import { MatSliderModule } from '@angular/material/slider';
   declarations: [
     AppComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
