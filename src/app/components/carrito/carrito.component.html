@@ -3,7 +3,7 @@
     <h2><b>Mi compra E-Vine</b></h2>
     <div class="col-lg-4">      
       <mat-card class="example-card compra">
-        <mat-card-title>Total: $ {{total}} </mat-card-title>
+        <mat-card-title>Total: ${{total.toFixed(2)}} USD</mat-card-title>
         <mat-divider></mat-divider>
         <br>
         <mat-card-subtitle>Realizar Pago:</mat-card-subtitle>
@@ -26,7 +26,7 @@
         <!-- precio Column -->
         <ng-container matColumnDef="precio">
           <th mat-header-cell *matHeaderCellDef> Precio/Unidad </th>
-          <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+          <td mat-cell *matCellDef="let element"> ${{element.precio.toFixed(2)}} USD c/u </td>
         </ng-container>
       
         <!-- cantidad Column -->
@@ -38,7 +38,7 @@
         <!-- subtotal Column -->
         <ng-container matColumnDef="subtotal">
           <th mat-header-cell *matHeaderCellDef> Sub Total </th>
-          <td mat-cell *matCellDef="let element"> {{element.subtotal}} </td>
+          <td mat-cell *matCellDef="let element"> ${{element.subtotal.toFixed(2)}} USD</td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

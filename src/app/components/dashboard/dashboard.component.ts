@@ -197,21 +197,17 @@ export class DialogOverviewExampleDialog {
       cantidad: this.carritoForm.value.Cantidad,
       precio: this.data.precio,
       subtotal: parseFloat((this.data.precio*this.carritoForm.value.Cantidad).toFixed(2))
-    }
+    }    
 
-    this.carritos.push(this.carrito);
-
-    var local = localStorage.getItem('carrito');
+    var local = sessionStorage.getItem('carrito');
     if(local == null){
+      this.carritos.push(this.carrito);
       sessionStorage.setItem('carrito', JSON.stringify(this.carritos));
     }else{
-      JSON.parse(local).forEach((item: Carrito) => {
-        this.carritos.push(item);
-      });
+      this.carritos = JSON.parse(local);
+      this.carritos.push(this.carrito);
       sessionStorage.setItem('carrito', JSON.stringify(this.carritos));
     }
-
-    console.log(this.carrito);
     this.productoService.$notificacion.emit(true);
     this.onNoClick()
   }
