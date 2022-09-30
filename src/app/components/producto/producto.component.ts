@@ -40,7 +40,7 @@ export class ProductoComponent implements OnInit {
       Stock: ['', Validators.required],
       Precio: ['', Validators.required],
       Categoria: ['', Validators.required],
-      Imagen: ['']
+      Imagen: ['', Validators.required]
     });
   }
 

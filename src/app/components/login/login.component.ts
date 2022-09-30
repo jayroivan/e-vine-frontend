@@ -57,10 +57,8 @@ export class LoginComponent implements OnInit {
     }
     var decode = (jwt_decode<decodeToken>(tokens));
     var rol = decode['rol']
-    console.log(rol)
     this.usuarioService.getrol(rol, tokens).subscribe((res) =>{
       if (res.nombre === 'admin') {
-        console.log(res.nombre)
         sessionStorage.setItem("isAdmin", JSON.stringify(true))
       } else {
         sessionStorage.setItem("isAdmin", JSON.stringify(false))
