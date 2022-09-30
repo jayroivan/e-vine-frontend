@@ -85,17 +85,25 @@ export class ModificarComponent implements OnInit {
       nombre: this.productoForm.value.Nombre,
       precio: this.productoForm.value.Precio,
       stock: this.productoForm.value.Stock,
-      categoria: this.productoForm.value.Categoria
+      categoria: this.productoForm.value.Categoria,
+      imagen: this.productoForm.value.Imagen
     }
-    this.firebaseService.subirImagen(`${this.udtproducto.nombre}_${Date.now()}`, this.imagen).then((res) => {
-      if(res != null){
-        this.udtproducto.imagen = res;
-        this.productoService.put(this.udtproducto._id!, this.udtproducto).subscribe((res) => {
-          this.productoService.$refreshProductos.emit(true);
-          this.productoService.$cerrarModal.emit(true);
-        })
-      }
-    })
+    if(this.imagen == undefined){
+      this.productoService.put(this.udtproducto._id!, this.udtproducto).subscribe((res) => {
+        this.productoService.$refreshProductos.emit(true);
+        this.productoService.$cerrarModal.emit(true);
+      })
+    }else{
+      this.firebaseService.subirImagen(`${this.udtproducto.nombre}_${Date.now()}`, this.imagen).then((res) => {
+        if(res != null){
+          this.udtproducto.imagen = res;
+          this.productoService.put(this.udtproducto._id!, this.udtproducto).subscribe((res) => {
+            this.productoService.$refreshProductos.emit(true);
+            this.productoService.$cerrarModal.emit(true);
+          })
+        }
+      })
+    }    
   }
 
 }
