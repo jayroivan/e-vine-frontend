@@ -34,6 +34,11 @@ export class UsuariosService {
     return this.http.get<Rol>(`${this.url}/rol/buscaruno${id}`, {headers: headers})
   }
 
+  putusuario(usuario: Usuario):Observable<Usuario>{
+    const httpHeaders = this.getHeaders();
+    return this.http.put(`${this.url}/usuario/actualizar/${usuario._id}`, usuario, {headers: httpHeaders})
+  }
+
   getHeaders(): HttpHeaders {
     let httpHeaders: HttpHeaders = new HttpHeaders();
     const token = sessionStorage.getItem('token');
