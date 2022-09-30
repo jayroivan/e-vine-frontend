@@ -139,6 +139,7 @@ export class DashboardComponent implements OnInit {
 
   Carrito(){
     this.carrito = true;
+    this.notificacion = false;
   }
 
 }
