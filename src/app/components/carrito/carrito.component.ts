@@ -65,9 +65,7 @@ export class CarritoComponent implements OnInit {
     if(token){
       var decode = (jwt_decode<decodeToken>(token))
       this.usuarioService.getuno(decode['id']).subscribe((res) => {
-        this.usuario = res;
-        console.log(this.usuario);
-        
+        this.usuario = res;        
       });
     }
   }
@@ -92,7 +90,7 @@ export class CarritoComponent implements OnInit {
   Guardar(){
     this.orden = {
       numero: 0,
-      usuario: this.usuario._id,
+      usuario: this.usuario,
       total: this.total,
       detalle: this.carrito
     }
