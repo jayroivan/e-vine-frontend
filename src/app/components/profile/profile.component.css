@@ -15,6 +15,13 @@ mat-card-content{
   margin: auto;
 }
 
+.borde{
+  margin-bottom: 1px;
+  border-left: 1px solid #6f42c1;
+  border-right: 1px solid #6f42c1;
+  border-top: 1px solid #6f42c1;
+  border-bottom: 1px solid #6f42c1;
+}
 
 .espacio{
   margin-top: 50px;

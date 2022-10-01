@@ -1,8 +1,9 @@
-<h1 mat-dialog-title>Actualizar Producto</h1>
+<h1 mat-dialog-title class="text-primary">Actualizar Producto</h1>
+<mat-card class="borde" >
 <div mat-dialog-content>
   <form [formGroup]="productoForm" (ngSubmit)="Actualizar()">
     <br>    
-    <mat-form-field appearance="fill">
+    <mat-form-field style="margin-right: 17px; margin-left: 25px;" appearance="fill">
         <mat-label>Categoría </mat-label>
         <mat-select formControlName="Categoria">
           <mat-option *ngFor="let category of categorias" [value]="category._id">
@@ -21,18 +22,18 @@
     </mat-form-field>
     
     <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field class="example-full-width" style="margin-right: 17px;margin-left: 30px;" appearance="fill">
         <mat-label>Cosecha</mat-label>
-        <input formControlName="Cosecha" matInput type="text" autocomplete="off">
-      </mat-form-field></td>
-        <td><mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Stock</mat-label>
-          <input formControlName="Stock" matInput type="number" autocomplete="off">
-        </mat-form-field></td>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Precio</mat-label>
-          <input formControlName="Precio" type="number" matInput autocomplete="off">
-        </mat-form-field>
+        <input formControlName="Cosecha"  style="margin-right: 17px;"matInput type="text" autocomplete="off">
+      </mat-form-field>
+      <mat-form-field  style="margin-right: 17px;" class="example-full-width" appearance="fill">
+        <mat-label>Stock</mat-label>
+        <input formControlName="Stock" matInput type="number" autocomplete="off">
+      </mat-form-field>
+      <mat-form-field  style="margin-right: 17px;" class="example-full-width" appearance="fill">
+        <mat-label>Precio</mat-label>
+        <input formControlName="Precio" type="number" matInput autocomplete="off">
+      </mat-form-field>
     </tr></table>                    
     <br>
     <div>              
@@ -40,3 +41,4 @@
     </div>
   </form>         
 </div>
+</mat-card>

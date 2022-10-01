@@ -2,7 +2,7 @@
     <div mat-dialog-content>
         <mat-card-title class="text-primary espacioproducto">Productos</mat-card-title>
         <br>
-        <mat-card>
+        <mat-card class="borde">
             <mat-tab-group [selectedIndex]="selected.value" mat-align-tabs="start" (selectedIndexChange)="selected.setValue($event)">
                 <!-- Listado de Producto-->
                 <mat-tab label="Listado">
@@ -42,7 +42,7 @@
                     <mat-tab label="Agregar Producto">     
                         <form [formGroup]="productoFomr" (ngSubmit)="GuardarProducto()">
                             <br>
-                            <mat-form-field appearance="fill">
+                            <mat-form-field style="margin-right: 17px; margin-left: 17px;" appearance="fill">
                                 <mat-label>Categoría</mat-label>
                                 <mat-select formControlName="Categoria">
                                 <mat-option *ngFor="let category of categorias" [value]="category._id">
@@ -60,16 +60,16 @@
                                 <mat-icon matSuffix >folder</mat-icon>
                             </mat-form-field>                    
                             <table class="example-full-width" cellspacing="0"><tr>
-                                <td><mat-form-field style="margin-right: 17px;" appearance="fill">
+                                <td><mat-form-field  style="margin-right: 17px;margin-left: 17px;" appearance="fill">
                                     <mat-label>Cosecha</mat-label>
                                     <input matInput formControlName="Cosecha" autocomplete="off">
                                 </mat-form-field>                            
                                 </td>
-                                <td><mat-form-field class="example-full-width" appearance="fill">
+                                <td><mat-form-field style="margin-right: 17px;" class="example-full-width" appearance="fill">
                                 <mat-label>Stock</mat-label>
                                 <input matInput type="number" formControlName="Stock" autocomplete="off">
                                 </mat-form-field></td>
-                                <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-form-field style="margin-right: 17px;" class="example-full-width" appearance="fill">
                                 <mat-label>Precio</mat-label>
                                 <input type="number" matInput formControlName="Precio" autocomplete="off">
                                 </mat-form-field>

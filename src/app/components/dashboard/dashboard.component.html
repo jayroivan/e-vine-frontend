@@ -22,17 +22,17 @@
 </mat-toolbar>
 
 <div class="container" *ngIf="isAuthenticated && carrito == false && profile == false">
-    <div class="row mt-4">
+    <!-- <div class="row mt-4">
         <h1>Lista de Vinos</h1>
         <mat-form-field>
           <mat-label>Nombre de Vino</mat-label>
           <input matInput type="text" [formControl]="search" (keydown.enter)="ObtenerVino()" placeholder="Chaparro" autocomplete="off">
         </mat-form-field>
-    </div>
+    </div> -->
 
     <div class="row mt-4">
         <div class="col-3" *ngFor="let p of productos" (mouseover)="ChangeAnimation(true, p._id)" (mouseleave)="ChangeAnimation(false, p._id)">
-            <mat-card class="example-card">
+            <mat-card class="example-card borde" style="margin-top: 20px;">
                 <mat-card-header>
                     <mat-card-title><b>{{p.nombre}}</b></mat-card-title>
                     <mat-card-subtitle>{{p.categoria?.nombre}}</mat-card-subtitle>                    
