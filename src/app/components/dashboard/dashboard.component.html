@@ -32,16 +32,15 @@
 
     <div class="row mt-4">
         <div class="col-3" *ngFor="let p of productos" (mouseover)="ChangeAnimation(true, p._id)" (mouseleave)="ChangeAnimation(false, p._id)">
-            <mat-card class="mb-4">
+            <mat-card class="example-card">
                 <mat-card-header>
-                    <mat-card-subtitle>{{p.categoria?.nombre}}</mat-card-subtitle>
-                    <mat-card-title>{{p.nombre}}</mat-card-title>
+                    <mat-card-title><b>{{p.nombre}}</b></mat-card-title>
+                    <mat-card-subtitle>{{p.categoria?.nombre}}</mat-card-subtitle>                    
                 </mat-card-header>
                 <img mat-card-image [src]="p.imagen" alt="" style="max-height: 200px;">
-                <mat-card-content>
-                    <p><b>Cosecha:</b> {{p.cosecha}}</p>
-                    <p><b>Stock:</b> {{p.stock}} </p>
-                    <p><b>Precio:</b> ${{p.precio.toFixed(2)}} USD</p>
+                <mat-card-content class="d-flex" style="justify-content: space-between;">
+                    <p><b>Stock:</b>&nbsp;&nbsp;{{p.stock}}</p>
+                    <p><b>Precio:</b>&nbsp;&nbsp;${{p.precio.toFixed(2)}} USD</p>
                 </mat-card-content>
                 <mat-divider inset></mat-divider>
                 <mat-card-actions>

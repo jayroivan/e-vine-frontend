@@ -22,3 +22,13 @@
   .demo-table {
     width: 100%;
 }
+
+.example-card{
+  margin-top: 4em;
+  max-width: 400px;
+  margin-bottom: 4em;
+}
+
+.example-full-width {
+  width: 50%;
+}

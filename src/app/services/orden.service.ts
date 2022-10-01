@@ -20,7 +20,7 @@ export class OrdenService {
   
   get(): Observable<Orden[]>{
     const httpHeaders = this.getHeaders();
-    return this.http.get<Orden[]>(`${this.url}/orden/todos`, {headers: httpHeaders});
+    return this.http.get<Orden[]>(`${this.url}/orden/todas`, {headers: httpHeaders});
   }
 
   getLastOrder(): Observable<Orden>{

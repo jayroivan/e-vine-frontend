@@ -92,7 +92,7 @@ export class CarritoComponent implements OnInit {
   Guardar(){
     this.orden = {
       numero: 0,
-      usuario: this.usuario,
+      usuario: this.usuario._id,
       total: this.total,
       detalle: this.carrito
     }

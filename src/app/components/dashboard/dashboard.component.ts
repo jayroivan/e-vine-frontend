@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
 
   openDialogProducto(producto:Producto): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '400px',
+      width: '480px',
       data: producto,
     });
 
