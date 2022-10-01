@@ -23,6 +23,11 @@ export class OrdenService {
     return this.http.get<Orden[]>(`${this.url}/orden/todas`, {headers: httpHeaders});
   }
 
+  getById(id?: string): Observable<Orden[]>{
+    const httpHeaders = this.getHeaders();
+    return this.http.get<Orden[]>(`${this.url}/orden/todas/usuario/${id}`, {headers: httpHeaders});
+  }
+
   getLastOrder(): Observable<Orden>{
     const httpHeaders = this.getHeaders();
     return this.http.get<Orden>(`${this.url}/orden/obtenerultimaorden`, {headers: httpHeaders})

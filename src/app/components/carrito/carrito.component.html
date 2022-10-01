@@ -3,10 +3,12 @@
     <h2><b>Mi compra E-Vine</b></h2>
     <div class="col-lg-3">      
       <mat-card class="example-card compra">
-        <mat-card-title>Total: ${{total.toFixed(2)}} USD</mat-card-title>
-        <mat-divider></mat-divider>
+        <mat-card-header>
+          <mat-card-title>Total: ${{total.toFixed(2)}} USD</mat-card-title>
+          <mat-card-subtitle>Realizar Pago:</mat-card-subtitle>    
+        </mat-card-header>        
+        <mat-divider></mat-divider>        
         <br>
-        <mat-card-subtitle>Realizar Pago:</mat-card-subtitle>    
         <mat-card-content>
           <div id="paypal"></div>
         </mat-card-content>
