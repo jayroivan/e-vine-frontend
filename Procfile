@@ -1,1 +1,1 @@
-ng serve
+web: npm run start:heroku
