@@ -28,3 +28,11 @@
 .mat-spinner circle {
     stroke: #ffffff!important;
 }
+
+.borde{
+  margin-bottom: 1px;
+  border-left: 1px solid #b9d1fc;
+  border-right: 1px solid #b9d1fc;
+  border-top: 1px solid #b9d1fc;
+  border-bottom: 1px solid #b9d1fc;
+}

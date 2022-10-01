@@ -45,9 +45,6 @@
   width: 100%;
 }
 
-td {
-  padding-right: 8px;
-}
 .botones {
   display: flex;
   justify-content: space-between;
@@ -55,4 +52,12 @@ td {
 
 .mat-form-field {
   margin-right: 8px;
+}
+
+.borde{
+  margin-bottom: 1px;
+  border-left: 1px solid #6f42c1;
+  border-right: 1px solid #6f42c1;
+  border-top: 1px solid #6f42c1;
+  border-bottom: 1px solid #6f42c1;
 }
