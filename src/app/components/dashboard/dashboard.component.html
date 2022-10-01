@@ -2,7 +2,7 @@
     <span>E-Vine</span>
     <span class="example-spacer"></span>
     <button mat-icon-button matTooltip="Home" (click)="Home()"><mat-icon>home</mat-icon></button>
-    <button *ngIf="isAdmin() === 'true'" mat-icon-button matTooltip="Ordenes" (click)="openOrden()"><mat-icon>list_alt</mat-icon></button>    
+    <button mat-icon-button matTooltip="Ordenes" (click)="openOrden()"><mat-icon>list_alt</mat-icon></button>    
     <button *ngIf="isAdmin() === 'true'" mat-icon-button matTooltip="Productos" (click)="openProducto()"><mat-icon>inventory_2</mat-icon></button>
     <button *ngIf="isAdmin() === 'true'" mat-icon-button matTooltip="Tipo de Vino" (click)="openDialog()"><mat-icon>category</mat-icon></button>    
     <span class="example-spacer"></span>

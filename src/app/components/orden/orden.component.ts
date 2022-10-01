@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Orden } from 'src/app/models/orden';
+import { OrdenService } from 'src/app/services/orden.service';
 
 @Component({
   selector: 'app-orden',
@@ -6,20 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orden.component.css']
 })
 export class OrdenComponent implements OnInit {
+
+  ordenes: Orden[] = []
+
   displayedColumns: string[] = ['demo-numero', 'demo-fecha', 'demo-total', 'demo-usuario'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  dataSource!: MatTableDataSource<Orden>;
+  constructor(
+    private ordenService: OrdenService
+  ) { }
 
   ngOnInit(): void {
+    this.CargarDatos();
+  }
+
+  CargarDatos(){
+    this.ordenService.get().subscribe((res) => {
+      this.ordenes = res;
+
+      this.dataSource = new MatTableDataSource(this.ordenes);
+    })
   }
 
 }
-export interface OrdenElement {
-  numero: number;
-  fecha: number;
-  total: number;
-  usuario: string;
-}
-const ELEMENT_DATA: OrdenElement[] = [
-  
-];

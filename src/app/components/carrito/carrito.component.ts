@@ -38,19 +38,7 @@ export class CarritoComponent implements OnInit {
         value: this.total.toString(),
         onApprove: (details) => {
           alert("Transaction Successfull")
-          this.orden = {
-            numero: 0,
-            usuario: this.usuario,
-            total: this.total,
-            detalle: this.carrito
-          }
-          this.ordenService.getLastOrder().subscribe((res) => {
-            this.orden.numero = res.numero 
-            this.ordenService.post(this.orden).subscribe((res) => {
-              sessionStorage.removeItem('carrito');
-              this.ordenService.$cerrarCarrito.emit(true);
-            });       
-          })                    
+          this.Guardar();            
         }
       }
     )
@@ -99,6 +87,29 @@ export class CarritoComponent implements OnInit {
     this.carrito.forEach((item) => {
       this.total += item.subtotal;
     })
+  }
+
+  Guardar(){
+    this.orden = {
+      numero: 0,
+      usuario: this.usuario,
+      total: this.total,
+      detalle: this.carrito
+    }
+    this.ordenService.getLastOrder().subscribe((res) => {
+      if(res != null){
+        this.orden.numero = res.numero + 1
+        this.ordenService.post(this.orden).subscribe((res) => {
+          this.Cancelar();
+        });    
+      }else{
+        this.orden.numero = 1;
+        this.ordenService.post(this.orden).subscribe((res) => {
+          this.Cancelar();
+        })
+      }
+         
+    })        
   }
 
   Cancelar(){

@@ -6,5 +6,5 @@ export interface Orden {
     numero: number;
     total: number;
     detalle: Carrito[];
-    usuario: Usuario;
+    usuario: any;
 }

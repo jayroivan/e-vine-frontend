@@ -20,7 +20,7 @@ import { ProfileComponent } from '../profile/profile.component';
     CarritoComponent,
     ModificarComponent,
     OrdenComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

@@ -29,6 +29,7 @@ import { MatListModule } from '@angular/material/list'
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [],
@@ -59,6 +60,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatDialogModule,   
     MatProgressBarModule,
     MaterialFileInputModule,
+    NgxPayPalModule,
   ],
   exports:[
     CommonModule,
@@ -87,6 +89,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatDialogModule,
     MatProgressBarModule,
     MaterialFileInputModule,
+    NgxPayPalModule,
   ]
 })
 export class SharedModule { }

@@ -1,12 +1,11 @@
 <form [formGroup]="carritoForm" (ngSubmit)="AddCarrito()">
   <h2 mat-dialog-title style="margin-bottom: 0px;text-align: center;"><b>Nombre:</b> {{data.nombre}}</h2>
   <mat-divider style="margin-bottom: 16px;"></mat-divider>
-  <h3 mat-dialog-subtitle><b>Categoria:</b> {{data.categoria}}</h3>
+  <h3 mat-dialog-subtitle><b>Categoria:</b> {{data.categoria?.nombre}}</h3>
   <div mat-dialog-content>
     <p><b>Cosecha:</b> {{data.cosecha}}</p>
     <p><b>Sotck:</b> {{data.stock}}</p>
     <p><b>Precio:</b> $ {{data.precio}}</p>
-
     <mat-form-field appearance="fill">
       <mat-label>Seleccione una cantidad</mat-label>
       <mat-select formControlName="Cantidad" [(value)]="selected" disableRipple>

@@ -16,6 +16,7 @@ export class OrdenService {
   ) { }
 
   $cerrarCarrito = new EventEmitter<boolean>();
+  $crearOrden = new EventEmitter<boolean>();
   
   get(): Observable<Orden[]>{
     const httpHeaders = this.getHeaders();
