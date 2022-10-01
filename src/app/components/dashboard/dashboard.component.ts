@@ -175,6 +175,7 @@ export class DashboardComponent implements OnInit {
 @Component({
   selector: './dialog-overview-example-dialog',
   templateUrl: './dialog-overview-example-dialog.html',
+  styleUrls: ['./dashboard.component.css']
 })
 export class DialogOverviewExampleDialog {
   selected = 0.00;
